@@ -1,0 +1,18 @@
+{
+  "name": "trainly.io-group17",
+  "version": "1.0.0",
+  "description": "CS5200 Fall17 Sec2 Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amrit Bhatia, Zhe Chen, Janhavi Suresh Mahajan, Bowen Zhang",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mysql2": "^1.5.0",
+    "passport": "^0.4.0"
+  }
+}
