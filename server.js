@@ -21,33 +21,36 @@ app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/',function(req,res){
-    connectionPool
-        .getConnection()
-        .then(
-            function (conn) {
-                var result = conn.query(
-                    'SELECT * FROM information_schema.columns WHERE table_schema = \'' + process.env.MYSQL_DATABASE_NAME +'\''
-                );
-                conn.release();
-                return result;
-            }
-        )
-        .then(
-            function ([rows,fields]){
-                res.write('<h1><a style="color:red" onclick="alert(\'Under Construction\')" href="">Trainly.io</a></h1>');
-                for(var row in rows){
-                    res.write(JSON.stringify(rows[row]));
-                }
-                res.end();
-            }
-        )
-        .catch(
-            function (err){
-                console.log(err);
-            }
-        );
-});
+// configure a public directory to host static content
+app.use(app.express.static(__dirname + '/public'));
+
+// app.get('/',function(req,res){
+//     connectionPool
+//         .getConnection()
+//         .then(
+//             function (conn) {
+//                 var result = conn.query(
+//                     'SELECT * FROM information_schema.columns WHERE table_schema = \'' + process.env.MYSQL_DATABASE_NAME +'\''
+//                 );
+//                 conn.release();
+//                 return result;
+//             }
+//         )
+//         .then(
+//             function ([rows,fields]){
+//                 res.write('<h1><a style="color:red" onclick="alert(\'Under Construction\')" href="">Trainly.io</a></h1>');
+//                 for(var row in rows){
+//                     res.write(JSON.stringify(rows[row]));
+//                 }
+//                 res.end();
+//             }
+//         )
+//         .catch(
+//             function (err){
+//                 console.log(err);
+//             }
+//         );
+// });
 
 var port = process.env.PORT || 3000;
 app.listen(port);
