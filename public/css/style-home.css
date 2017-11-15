@@ -1,0 +1,18 @@
+.tr-fixed-top-header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    border-bottom: solid red 2px;
+}
+#home-header-brand{
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+}
+
+#home-header-login{
+    text-align: right;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-right: 50px;
+}

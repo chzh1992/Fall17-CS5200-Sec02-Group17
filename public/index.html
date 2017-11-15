@@ -1,20 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="TrainlyIo">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Amrit Bhatia, Zhe Chen, Janhavi Suresh Mahajan, Bowen Zhang">
-    <title>Trainly</title>
+    <title>Trainly.io - CS5200 Fall17 Sec2 Group17</title>
 
+    <!---->
     <!--CDNs-->
+    <!---->
+
+    <!--JQuery-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"><script>-->
+
     <!--AngularJs-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>-->
 
+    <!--BootStrap-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"-->
+          <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+    <!---->
     <!--Local Libraries-->
+    <!---->
+
+    <!--JQuery-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.matchHeight-min.js"></script>
+
     <!--AngularJs-->
     <script src="vendor/angularjs/angular.min.js"></script>
     <script src="vendor/angularjs/angular-route.min.js"></script>
 
+    <!--BootStrap-->
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
 
     <!--Set up the AngularJS Framework-->
     <script src="app.js"></script>
@@ -22,9 +42,13 @@
 
     <!--Services-->
 
+    <!--Directives-->
+    <script src="directives/tr-match-my-height.js"></script>
 
     <!--Controllers-->
-    <script src="views/home/home.controller.client.html.js"></script>
+    <script src="views/home/home.controller.client.js"></script>
+
+    <link href="css/style-home.css" rel="stylesheet">
 
 </head>
 <body>
