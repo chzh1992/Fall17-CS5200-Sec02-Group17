@@ -1,0 +1,32 @@
+.tr-fixed-top-header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+}
+
+@media (max-width: 600px){
+    .tr-large-device-content{
+        display: none;
+    }
+    .tr-small-device-content{
+        display: block;
+    }
+}
+
+@media (min-width: 600px){
+    .tr-large-device-content{
+        display: block;
+    }
+    .tr-small-device-content{
+        display: none;
+    }
+}
+
+ul[class~="tr-navbar"]{
+    list-style-type: none;
+}
+
+.tr-navbar > li{
+    display: inline-block;
+}
+
