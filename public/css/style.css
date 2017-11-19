@@ -30,3 +30,34 @@ ul[class~="tr-navbar"]{
     display: inline-block;
 }
 
+.tr-vertical-center{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+/*fixed under the fixed navbar*/
+.tr-hidden-navbar-menu{
+    display: none;
+    position: fixed;
+    width: 100%;
+}
+
+.tr-hidden-navbar-menu a{
+    text-decoration: none;
+    color: black;
+}
+
+.tr-hidden-navbar-menu .list-group-item{
+    border-radius: 0;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    background-color: white;
+    border-top: hidden;
+}
+
+.tr-navbar-closer{
+    display: none;
+}

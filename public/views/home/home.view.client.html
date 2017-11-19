@@ -1,19 +1,43 @@
-<header class="tr-fixed-top-header" tr-set-min-height="80px">
-    <span id="home-header-brand">
-        Trainly
-    </span>
-    <ul id="home-navbar" class="tr-large-device-content tr-navbar">
-        <li>
-            <a href="">
-                Statistics
-            </a>
-        </li>
-        <li>
-            <a href="">
-                Log in
-            </a>
-        </li>
-    </ul>
+<header tr-home-header>
+    <div id="scrolled-top-detector"></div>
+    <div class="tr-fixed-top-header"
+         tr-set-min-height="80px"
+         id="home-header">
+        <span id="home-header-brand">
+            Trainly
+        </span>
+        <ul id="home-navbar" class="tr-large-device-content tr-navbar tr-vertical-center">
+            <li>
+                <a href="">
+                    Statistics
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Log In
+                </a>
+            </li>
+        </ul>
+
+        <span tr-small-device-navbar>
+             <a href="" class="glyphicon glyphicon-menu-hamburger tr-navbar-opener tr-vertical-center"></a>
+             <a href="" class="glyphicon glyphicon-remove tr-navbar-closer tr-vertical-center"></a>
+             <ul class="list-group tr-hidden-navbar-menu">
+                 <a href="">
+                     <li class="list-group-item">
+                         Statistics
+                     </li>
+                 </a>
+
+                 <a href="">
+                     <li class="list-group-item">
+                        Log In
+                     </li>
+                 </a>
+             </ul>
+         </span>
+    </div>
+
 
 </header>
 <section id="home-main-section">

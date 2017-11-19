@@ -1,22 +1,36 @@
+#home-header{
+    color: whitesmoke;
+    z-index: 2;
+}
+
 #home-header-brand{
     font-size: 30px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    color: whitesmoke;
 }
 
 #home-navbar{
     padding-right: 20px;
-    float: right;
     font-size: 18px;
-    padding-top: 20px;
 }
 
 #home-navbar li{
     padding: 12px;
 }
+
+/*#home-navbar li:after{*/
+    /*display:block;*/
+    /*content: '';*/
+    /*transition: transform 250ms linear;*/
+    /*border-bottom: 2px red solid;*/
+    /*transform: scaleX(0);*/
+/*}*/
+
+/*#home-navbar li:hover:after {*/
+    /*transform: scaleX(1);*/
+/*}*/
 
 #home-navbar a{
     color: whitesmoke;
@@ -26,6 +40,23 @@
 
 #home-navbar a:hover{
     color: #ff66ff;
+}
+
+#home-header .tr-navbar-opener,#home-header .tr-navbar-closer{
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 25px;
+    padding-right: 20px;
+}
+
+@media (max-width: 600px){
+    #home-header .tr-navbar-opener,#home-header .tr-navbar-closer{
+        padding-right: 5px;
+    }
+}
+
+#home-header .tr-hidden-navbar-menu{
+    top: 80px;
 }
 
 #home-main-section{
