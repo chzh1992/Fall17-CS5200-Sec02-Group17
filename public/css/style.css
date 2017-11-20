@@ -1,7 +1,6 @@
-.tr-fixed-top-header{
+.tr-fixed-top{
     position: fixed;
-    width: 100%;
-    top: 0px;
+    top: 0;
 }
 
 @media (max-width: 600px){
@@ -28,6 +27,16 @@ ul[class~="tr-navbar"]{
 
 .tr-navbar > li{
     display: inline-block;
+    position: relative;
+}
+
+.tr-navbar .tr-navbar-item-underline{
+    position: absolute;
+    top: 100%;
+    min-height: 3px;
+    border-radius: 3px;
+    background-color: red;
+    display: none;
 }
 
 .tr-vertical-center{

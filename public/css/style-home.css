@@ -1,6 +1,9 @@
 #home-header{
     color: whitesmoke;
     z-index: 2;
+    min-height: 80px;
+    transition: color .5s ease-in-out;
+    width: 100%;
 }
 
 #home-header-brand{
@@ -18,6 +21,10 @@
 
 #home-navbar li{
     padding: 12px;
+}
+
+#home-navbar .tr-navbar-item-underline{
+    width: calc(100% - 24px);
 }
 
 /*#home-navbar li:after{*/

@@ -15,14 +15,26 @@
 
             function changeStyle(){
                 if (windowObj.scrollTop() > 0){
-                    jQueyrObj.children('#home-header').css('color','red');
-                    jQueyrObj.children('#home-header').css('background-color','white');
+                    jQueyrObj.css('color','red');
+                    jQueyrObj.css('background-color','white');
+                    jQueyrObj.find('#home-navbar li').hover(
+                        function (){
+                            angular.element(this)
+                                .children('.tr-navbar-item-underline')
+                                .show({effect: 'scale', direction: 'horizontal',duration: 300});
+                        },
+                        function (){
+                            angular.element(this)
+                                .children('.tr-navbar-item-underline')
+                                .hide({effect: 'scale', direction: 'horizontal',duration: 300});
+                        }
+                    );
                     jQueyrObj.find('#home-navbar a').css('color','red');
                     jQueyrObj.find('.tr-navbar-opener').css('color','red');
                     jQueyrObj.find('.tr-navbar-closer').css('color','red');
                 } else{
-                    jQueyrObj.children('#home-header').css('color','whitesmoke');
-                    jQueyrObj.children('#home-header').css('background-color','transparent');
+                    jQueyrObj.removeAttr('style');
+                    jQueyrObj.find('#home-navbar li').unbind('mouseenter mouseleave');
                     jQueyrObj.find('#home-navbar a').removeAttr('style');
                     jQueyrObj.find('.tr-navbar-opener').removeAttr('style');
                     jQueyrObj.find('.tr-navbar-closer').removeAttr('style');
