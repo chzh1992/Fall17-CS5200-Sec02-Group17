@@ -32,7 +32,7 @@ ul[class~="tr-navbar"]{
 
 .tr-navbar .tr-navbar-item-underline{
     position: absolute;
-    top: 100%;
+    top: calc(50% + 30px);
     min-height: 3px;
     border-radius: 3px;
     background-color: red;
