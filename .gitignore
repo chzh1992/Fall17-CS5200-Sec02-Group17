@@ -2,5 +2,5 @@ env.js
 /.idea
 /node_modules
 **/vendor
-cdn.html
-local-library.html
+index-head-cdn.html
+index-head-local-library.html
