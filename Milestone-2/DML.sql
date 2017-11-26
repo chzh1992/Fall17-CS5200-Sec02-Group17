@@ -45,11 +45,11 @@ VALUES
 
 INSERT INTO `faculty` (`FacultyId`, `Title`, `Affiliation`, `WorkWebsite`, `ValidationStatus`, `ValidatorId`, `FacultyTimestamp`)
 VALUES
-	(1101,'Title1','Organization1','www.organization1.com',0,1151,'2017-11-23 21:17:13'),
-	(1111,'Title1','Organization1','www.organization1.com',0,1161,'2017-11-23 21:17:13'),
-	(1121,'Title1','Organization1','www.organization1.com',0,1171,'2017-11-23 21:17:13'),
-	(1131,'Title1','Organization1','www.organization1.com',0,1181,'2017-11-23 21:17:13'),
-	(1141,'Title1','Organization1','www.organization1.com',0,1191,'2017-11-23 21:17:13'),
+	(1101,'Title1','Organization1','www.organization1.com',1,NULL,'2017-11-26 01:30:29'),
+	(1111,'Title1','Organization1','www.organization1.com',0,NULL,NULL),
+	(1121,'Title1','Organization1','www.organization1.com',0,NULL,NULL),
+	(1131,'Title1','Organization1','www.organization1.com',0,NULL,NULL),
+	(1141,'Title1','Organization1','www.organization1.com',0,NULL,NULL),
 	(1151,'Title2','Organization2','www.organization2.com',1,1201,'2017-11-23 21:17:13'),
 	(1161,'Title2','Organization2','www.organization2.com',1,1211,'2017-11-23 21:17:13'),
 	(1171,'Title2','Organization2','www.organization2.com',1,1221,'2017-11-23 21:17:13'),
