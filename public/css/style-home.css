@@ -2,7 +2,7 @@
     color: whitesmoke;
     z-index: 2;
     min-height: 80px;
-    transition: color .5s ease-in-out;
+    transition: color .8s ease-in-out;
     width: 100%;
 }
 
@@ -62,7 +62,7 @@
     }
 }
 
-#home-header .tr-hidden-navbar-menu{
+#home-header .tr-collapsed-navbar-menu{
     top: 80px;
 }
 

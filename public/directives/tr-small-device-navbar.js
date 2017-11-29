@@ -29,13 +29,13 @@
             }
 
             function openMenu(){
-                jQueryObj.children('.tr-hidden-navbar-menu').fadeIn();
+                jQueryObj.children('.tr-collapsed-navbar-menu').fadeIn();
                 jQueryObj.children('.tr-navbar-opener').css('display','none');
                 jQueryObj.children('.tr-navbar-closer').css('display','block');
             }
 
             function closeMenu(){
-                jQueryObj.children('.tr-hidden-navbar-menu').fadeOut();
+                jQueryObj.children('.tr-collapsed-navbar-menu').fadeOut();
                 jQueryObj.children('.tr-navbar-opener').css('display','block');
                 jQueryObj.children('.tr-navbar-closer').css('display','none');
             }

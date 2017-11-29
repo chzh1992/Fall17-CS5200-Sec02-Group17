@@ -47,18 +47,18 @@ ul[class~="tr-navbar"]{
 }
 
 /*fixed under the fixed navbar*/
-.tr-hidden-navbar-menu{
+.tr-collapsed-navbar-menu{
     display: none;
     position: fixed;
     width: 100%;
 }
 
-.tr-hidden-navbar-menu a{
+.tr-collapsed-navbar-menu a{
     text-decoration: none;
     color: black;
 }
 
-.tr-hidden-navbar-menu .list-group-item{
+.tr-collapsed-navbar-menu .list-group-item{
     border-radius: 0;
     padding-top: 20px;
     padding-bottom: 15px;
