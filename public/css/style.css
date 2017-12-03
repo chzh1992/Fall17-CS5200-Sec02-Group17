@@ -1,8 +1,24 @@
+/* Override bootstrap row class */
+.row{
+    margin: 0;
+}
+
 .tr-fixed-top{
     position: fixed;
     top: 0;
 }
 
+.tr-vertical-center{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.tr-horizontal-center{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+}
 @media (max-width: 600px){
     .tr-large-device-content{
         display: none;
@@ -21,7 +37,7 @@
     }
 }
 
-ul[class~="tr-navbar"]{
+ul[class~="tr-navbar"], ul[class~="tr-tablist"]{
     list-style-type: none;
 }
 
@@ -32,18 +48,10 @@ ul[class~="tr-navbar"]{
 
 .tr-navbar .tr-navbar-item-underline{
     position: absolute;
-    top: calc(50% + 30px);
     min-height: 3px;
     border-radius: 3px;
     background-color: red;
     display: none;
-}
-
-.tr-vertical-center{
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(0,-50%);
 }
 
 /*fixed under the fixed navbar*/
@@ -65,8 +73,56 @@ ul[class~="tr-navbar"]{
     font-size: 18px;
     background-color: white;
     border-top: hidden;
+    border-bottom: lightgray solid 2px;
 }
 
 .tr-navbar-closer{
     display: none;
+}
+
+.tr-nav-header{
+    min-height: 70px;
+    background-color: white;
+    color: red;
+    width: 100%;
+    z-index: 2;
+    opacity: .9;
+}
+
+.tr-nav-brand a{
+    padding-left: 30px;
+    font-size: 30px;
+    color: red;
+    text-decoration: none;
+}
+
+.tr-nav-header .tr-navbar{
+    right: 0;
+    font-size: 18px;
+    padding: 30px;
+}
+
+.tr-nav-header .tr-navbar-opener, .tr-nav-header .tr-navbar-closer{
+    color: red;
+    text-decoration: none;
+    font-size: 25px;
+    right: 5px;
+}
+
+.tr-nav-header .tr-collapsed-navbar-menu{
+    top: 70px;
+}
+
+.tr-nav-header .tr-navbar li{
+    padding: 10px;
+}
+
+.tr-nav-header .tr-navbar a{
+    color: red;
+    text-decoration: none;
+}
+
+.tr-nav-header .tr-navbar .tr-navbar-item-underline{
+    width: calc(100% - 20px);
+    top: calc(50% + 20px);
 }

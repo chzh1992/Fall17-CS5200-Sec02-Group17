@@ -17,6 +17,7 @@
 #home-navbar{
     padding-right: 20px;
     font-size: 18px;
+    right: 0;
 }
 
 #home-navbar li{
@@ -25,6 +26,7 @@
 
 #home-navbar .tr-navbar-item-underline{
     width: calc(100% - 24px);
+    top: calc(50% + 30px);
 }
 
 /*#home-navbar li:after{*/
@@ -53,14 +55,15 @@
     color: whitesmoke;
     text-decoration: none;
     font-size: 25px;
-    padding-right: 20px;
+    right: 5px;
+
 }
 
-@media (max-width: 600px){
-    #home-header .tr-navbar-opener,#home-header .tr-navbar-closer{
-        padding-right: 5px;
-    }
-}
+/*@media (max-width: 600px){*/
+    /*#home-header .tr-navbar-opener,#home-header .tr-navbar-closer{*/
+        /*padding-right: 5px;*/
+    /*}*/
+/*}*/
 
 #home-header .tr-collapsed-navbar-menu{
     top: 80px;
@@ -147,7 +150,7 @@
     }
 
     .tr-home-introduction p{
-        padding-top: 0px;
+        padding-top: 0;
     }
 }
 

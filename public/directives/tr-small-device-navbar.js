@@ -11,33 +11,33 @@
 
 
         function linkFunction(scope,element){
-            var jQueryObj = angular.element(element);
+            var jNavbar = angular.element(element);
             if ($window.innerWidth > 600){
-                jQueryObj.css('display','none');
+                jNavbar.css('display','none');
             }
             angular.element($window).resize(changeVisibility);
-            jQueryObj.children('.tr-navbar-opener').click(openMenu);
-            jQueryObj.children('.tr-navbar-closer').click(closeMenu);
+            jNavbar.children('.tr-navbar-opener').click(openMenu);
+            jNavbar.children('.tr-navbar-closer').click(closeMenu);
 
 
             function changeVisibility(){
                 if ($window.innerWidth < 600){
-                    jQueryObj.css('display','block');
+                    jNavbar.css('display','block');
                 } else{
-                    jQueryObj.css('display','none');
+                    jNavbar.css('display','none');
                 }
             }
 
             function openMenu(){
-                jQueryObj.children('.tr-collapsed-navbar-menu').fadeIn();
-                jQueryObj.children('.tr-navbar-opener').css('display','none');
-                jQueryObj.children('.tr-navbar-closer').css('display','block');
+                jNavbar.children('.tr-collapsed-navbar-menu').fadeIn();
+                jNavbar.children('.tr-navbar-opener').css('display','none');
+                jNavbar.children('.tr-navbar-closer').css('display','block');
             }
 
             function closeMenu(){
-                jQueryObj.children('.tr-collapsed-navbar-menu').fadeOut();
-                jQueryObj.children('.tr-navbar-opener').css('display','block');
-                jQueryObj.children('.tr-navbar-closer').css('display','none');
+                jNavbar.children('.tr-collapsed-navbar-menu').fadeOut();
+                jNavbar.children('.tr-navbar-opener').css('display','block');
+                jNavbar.children('.tr-navbar-closer').css('display','none');
             }
         }
     }

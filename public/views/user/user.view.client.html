@@ -1,5 +1,121 @@
-<nav>
+<ng-include src="'views/common/nav-header.html'"></ng-include>
+<section id="profile-main-section">
 
-</nav>
 
-User
+    <div id="profile-pic">
+        <img src="avatar.png" class="tr-horizontal-center">
+    </div>
+
+    <div id="profile-tablist-bar"
+         class="row tr-large-device-content">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-9" >
+            <!--<ul class="tr-tablist">-->
+                <!--<li>-->
+                    <!--<a href="">-->
+                        <!--Enrolled-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="">-->
+                        <!--Completed-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="">-->
+                        <!--Interested-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <div id="profile-tablist">
+                <a href="">
+                    Enrolled
+                </a>
+                <a href="">
+                    Completed
+                </a>
+                <a href="">
+                    Insterested
+                </a>
+                <a href="">
+                    Created
+                </a>
+                <a href="">
+                    Pending Validation
+                </a>
+                <a href="">
+                    All Users
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3" id="user-information">
+            <div id="info-name">
+                <b>
+                    First Name Last Name
+                </b>
+            </div>
+            <div id="info-email">
+                first@group17.com
+            </div>
+            <div>
+                <a id="role-faculty">
+                    Faculty
+                </a>
+            </div>
+            <div id="info-faculty">
+                Title <br>
+                Affiliation <br>
+                Work Website <br>
+                Validated by Admin on <br>
+            </div>
+            <div>
+                <a id="role-admin">
+                    Admin
+                </a>
+            </div>
+            <div id="info-admin">
+                Granted by Admin on
+            </div>
+            <div id="info-address">
+                Street, State, Postal code <br>
+                Country
+            </div>
+            <div id="info-phone">
+                12345678910
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div id="tabpane">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        1234
+                    </li>
+                    <li class="list-group-item">
+                        1234
+                    </li>
+                    <li class="list-group-item">
+                        1234
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-sm-3" >
+            <div id="account-history">
+                <div id="account-history-header">
+                    <b>Account History</b>
+                </div>
+                <div id="total-spent">
+                    Total Spent:
+                </div>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+</section>
