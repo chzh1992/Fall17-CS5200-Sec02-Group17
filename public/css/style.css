@@ -126,3 +126,7 @@ ul[class~="tr-navbar"], ul[class~="tr-tablist"]{
     width: calc(100% - 20px);
     top: calc(50% + 20px);
 }
+
+.tr-tab-content{
+    display: none;
+}

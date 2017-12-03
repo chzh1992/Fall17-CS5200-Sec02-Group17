@@ -26,22 +26,6 @@
     background-color: white;
 }
 
-/*#profile-tablist .tr-tablist > li{*/
-    /*float:left;*/
-    /*width: 16.6666666%;*/
-    /*text-align: center;*/
-    /*padding: 12px 0;*/
-    /*border-bottom: 3px solid red;*/
-    /*border-right: lightgray solid 1px;*/
-/*}*/
-
-/*#profile-tablist .tr-tablist{*/
-    /*margin-bottom: 0;*/
-    /*overflow: auto;*/
-    /*padding-left: 0;*/
-    /*border-left: lightgray solid 1px;*/
-/*}*/
-
 #profile-tablist a{
     display: inline-block;
     text-align: center;
@@ -49,7 +33,10 @@
     text-decoration: none;
     color: black;
     border-right: lightgray 1px solid;
-    border-bottom: transparent 3px solid;
+}
+
+#profile-tablist a:hover{
+    color: red;
 }
 
 #profile-tablist{
@@ -100,11 +87,11 @@
     background-color: limegreen;
 }
 
-#tabpane{
+#profile-tabpane{
     margin-top: 10px;
 }
 
-#tabpane li{
+#profile-tabpane li{
     margin-bottom: 2px;
     min-height: 150px;
     max-height: 150px;
@@ -136,3 +123,15 @@
 #account-history hr{
     margin: 5px 0;
 }
+
+/*#profile-tablist .tr-active{*/
+    /*color: red;*/
+    /*font-size: 17px;*/
+    /*border-bottom: red 3px solid;*/
+/*}*/
+
+#enrolled a, #completed a, #interested a, #created a, #pending a, #all-users a{
+    text-decoration: none;
+    color: black;
+}
+
