@@ -13,7 +13,6 @@
             const defaultTab = jProfile.find('#profile-tablist .tr-active');
             const defaultTabContent = jProfile.find('#profile-tabpane .tr-active');
             defaultTab.css('color','red');
-            defaultTab.css('font-size','17px');
             defaultTab.css('border-bottom','red 3px solid');
             defaultTabContent.css('display','block');
             jProfile.find('#profile-tablist a').click(
@@ -21,7 +20,6 @@
                     jProfile.find('#profile-tablist a').removeAttr('style');
                     const thisElem = angular.element(this);
                     thisElem.css('color','red');
-                    thisElem.css('font-size','17px');
                     thisElem.css('border-bottom','red 3px solid');
                     jProfile.find('#profile-tabpane .tr-tab-content').hide();
                     const targetTabContent = jProfile.find(thisElem.attr('data-target'));
