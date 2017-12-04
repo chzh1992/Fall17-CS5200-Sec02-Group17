@@ -31,7 +31,7 @@
                             targetTabContent.find('li').each(
                                 function(i){
                                     angular.element(this).hide().delay(i*20).show({
-                                        effect: 'slide',
+                                        effect: 'drop',
                                         duration: 500
                                     });
                                 }
