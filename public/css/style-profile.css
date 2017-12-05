@@ -1,6 +1,6 @@
 #profile-main-section{
     padding-top: 200px;
-    background-color: #F0E8E6;
+    background-color: #F5F8FA;
     padding-bottom: 25px;
 }
 #profile-pic {
@@ -61,7 +61,7 @@
 }
 
 
-#role-faculty, #role-admin{
+#role-faculty, a[class~="tr-role-admin"]{
     display: inline-block;
     width: 100px;
     text-decoration: none;
@@ -82,7 +82,7 @@
     text-align: left;
 }
 
-#role-admin{
+.tr-role-admin{
     background-color: limegreen;
 }
 
@@ -159,4 +159,62 @@
     display: inline-block;
     background-color: indianred;
     color: white;
+    font-size: 18px;
+}
+
+#profile-tablist .badge{
+    margin-left: 10px;
+    transition: .3s ease;
+}
+
+#profile-tablist a:hover .badge{
+    font-size: 16px;
+    background-color: red;
+}
+
+.tr-validation-options{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.tr-validation-options a{
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 5px 0;
+    border-radius: 30px;
+}
+
+.tr-validation-true{
+    background-color: green;
+}
+
+.tr-validation-false{
+    background-color: red;
+}
+
+.tr-user-profile{
+    position: relative;
+    background-color: white;
+    padding: 0;
+    margin: 0 15px;
+}
+
+.tr-user-profile-info{
+    padding: 0 15px;
+    padding-top: 140px;
+    text-align: center;
+}
+
+a[class~="tr-grant-option"]{
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }

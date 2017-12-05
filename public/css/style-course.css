@@ -1,0 +1,28 @@
+#course-main-section{
+    background-color: #F5F8FA;
+    padding-top: 80px;
+}
+
+#course-header{
+    background-image: url("../thom-schneider-108615.jpg");
+    /*Photo by Thom Schneider on Unsplash*/
+    height: 350px;
+    background-position: center;
+    position: relative;
+}
+
+#course-name{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 50px;
+    max-width: 75%;
+    text-align: center;
+}
+
+#course-details{
+    padding-top: 30px;
+}
+

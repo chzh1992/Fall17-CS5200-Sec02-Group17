@@ -56,6 +56,7 @@
                    data-target="#pending"
                    class="tr-tab">
                     Pending Validation
+                    <span class="badge">10</span>
                 </a>
                 <a href=""
                    data-target="#all-users"
@@ -88,7 +89,7 @@
                 Validated by Admin on <br>
             </div>
             <div>
-                <a id="role-admin">
+                <a class="tr-role-admin">
                     Admin
                 </a>
             </div>
@@ -150,14 +151,71 @@
                 <ul class="list-group tr-tab-content"
                     id="pending"
                     data-tab-type="normal">
-                    <li class="list-group-item">dafd</li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <h4>First name last name </h4>
+                                <h5><b>Email</b></h5>
+                                Title <br>
+                                Affiliation <br>
+                                Work Website <br>
+                            </div>
+                            <div class="col-xs-3 tr-validation-options">
+                                <a class="tr-validation-true">
+                                    Validate
+                                </a>
+                                <a class="tr-validation-false">
+                                    Disapprove
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
                 </ul>
 
-                <ul class="list-group tr-tab-content"
-                    id="all-users"
-                    data-tab-type="normal">
+                <div class="tr-tab-content"
+                     id="all-users"
+                     data-tab-type="normal">
+                    <div class="col-xs-4 tr-user-profile">
+                        <img src="avatar.png" class="tr-horizontal-center">
+                        <div class="tr-user-profile-info">
+                            UserId <br>
+                            <b>Name</b> <br>
+                            Email <br>
+                            <div>
+                                <a class="tr-role-admin">
+                                    Admin
+                                </a>
+                            </div>
 
-                </ul>
+                            <div>
+                                <a class="tr-grant-option">
+                                    Grant Admin Power
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--<ul class="list-group tr-tab-content">-->
+                    <!--<li>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-3">-->
+                                <!--User ID-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-3">-->
+                                <!--Name-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-3">-->
+                                <!--Email-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-3">-->
+                                <!--Admin Power-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
 
             </div>
 
