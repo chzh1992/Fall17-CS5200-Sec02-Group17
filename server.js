@@ -4,9 +4,10 @@ const connectionPool = require('./mysql2-config');
 const app = require('./express-config');
 const session = require('express-session');
 const passport = require('passport');
+const express = require('express');
 
-app.use(app.express.json());
-app.use(app.express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 var sessionOption = {
     secret: "Group 17",
@@ -19,7 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // configure a public directory to host static content
-app.use(app.express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 // app.get('/',function(req,res){
 //     connectionPool
@@ -48,6 +49,11 @@ app.use(app.express.static(__dirname + '/public'));
 //             }
 //         );
 // });
+
+app.post('/testLogin',passport.authenticate('local'),function (req,res){
+    res.sendStatus(200);
+});
+
 
 var port = process.env.PORT || 3000;
 app.listen(port);
