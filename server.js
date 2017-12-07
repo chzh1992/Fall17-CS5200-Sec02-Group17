@@ -9,7 +9,7 @@ const express = require('express');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-var sessionOption = {
+const sessionOption = {
     secret: "Group 17",
     resave: false,
     saveUninitialized: false
@@ -50,12 +50,9 @@ app.use(express.static(__dirname + '/public'));
 //         );
 // });
 
-app.post('/testLogin',passport.authenticate('local'),function (req,res){
-    res.sendStatus(200);
-});
+require('./services/user.services.server');
 
-
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port);
 
 process.on('exit',function(){

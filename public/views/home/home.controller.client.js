@@ -4,7 +4,7 @@
         .controller('HomeController',HomeController);
 
     function HomeController($http,$location){
-        var model = this;
+        const model = this;
 
         model.login = login;
 

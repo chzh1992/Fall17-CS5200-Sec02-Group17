@@ -13,12 +13,32 @@
             .when('/user',{
                 templateUrl: 'views/user/user.view.client.html',
                 controller: 'UserController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:
+                    {
+                        CurrentUser: getCurrentUser
+                    }
             })
             .when('/course',{
                 templateUrl: 'views/course/course.view.client.html',
                 controller: 'CourseController',
                 controllerAs: 'model'
             });
+
+        function getCurrentUser($q,$location,UserService){
+            const deferred = $q.defer();
+            UserService
+                .checkLoggedIn()
+                .then(
+                    function(currentUser){
+                        deferred.resolve(currentUser);
+                    },
+                    function (err){
+                        deferred.reject();
+                        $location.url('/');
+                    }
+                );
+            return deferred.promise;
+        }
     }
 })();

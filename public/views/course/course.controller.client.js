@@ -4,6 +4,6 @@
         .controller('CourseController',CourseController);
 
     function CourseController(){
-        var model = this;
+        const model = this;
     }
 })();

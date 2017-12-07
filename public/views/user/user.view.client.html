@@ -5,7 +5,7 @@
 
 
     <div id="profile-pic">
-        <img src="avatar.png" class="tr-horizontal-center">
+        <img ng-src="{{model.user.profilePic || 'avatar.png'}}" class="tr-horizontal-center">
     </div>
 
     <div id="profile-tablist-bar"
@@ -71,59 +71,63 @@
         <div class="col-sm-3" id="user-information">
             <div id="info-name">
                 <b>
-                    First Name Last Name
+                    {{model.user.name}}
                 </b>
             </div>
             <div id="info-email">
-                first@group17.com
+                {{model.user.email}}
             </div>
-            <div>
-                <a id="role-faculty">
-                    Faculty
-                </a>
+            <div ng-show="model.user.isFaculty">
+                <div>
+                    <a id="role-faculty">
+                        Faculty
+                    </a>
+                </div>
+                <div id="info-faculty">
+                    Title <br>
+                    Affiliation <br>
+                    Work Website <br>
+                    Validated by Admin on <br>
+                </div>
             </div>
-            <div id="info-faculty">
-                Title <br>
-                Affiliation <br>
-                Work Website <br>
-                Validated by Admin on <br>
-            </div>
-            <div>
+
+            <div ng-show="model.user.isAdmin">
                 <a class="tr-role-admin">
                     Admin
                 </a>
+                <div id="info-admin">
+                    Granted by Admin on
+                </div>
             </div>
-            <div id="info-admin">
-                Granted by Admin on
-            </div>
+
             <div id="info-address">
-                Street, State, Postal code <br>
-                Country
+                {{model.user.street}}<br>
+                {{model.user.city}}, {{model.user.postalCode}} <br>
+                {{model.user.country}}
             </div>
-            <div id="info-phone">
-                12345678910
-            </div>
+            <!--<div id="info-phone">-->
+                <!--{{model.user.}}-->
+            <!--</div>-->
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <div id="profile-tabpane">
 
                 <ul class="list-group tr-tab-content tr-active"
                     id="enrolled"
                     data-tab-type="list">
-                    <li class="list-group-item">
+                    <li class="list-group-item" ng-repeat="course in model.courses.enrolled">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs tr-course-list-img">
-                                <img src="avatar.png">
-                                <ng-rate-it ng-model="4" read-only="true"></ng-rate-it>
+                                <img ng-src="course.icon">
+                                <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
                             </div>
-                            <div class="col-sm-7">
-                                <h5><b>Primary Topic</b></h5>
-                                <h4>Course Name</h4>
-                                <div>With First name last name</div>
-                                <div>Related topic: secondary topic</div>
+                            <div class="col-sm-7 tr-course-list-info">
+                                <h5><b>{{course.primaryTopic}}</b></h5>
+                                <h4>{{course.name}}</h4>
+                                <div ng-show="course.secondaryTopic">Related topic: {{course.secondaryTopic}}</div>
                             </div>
                             <div class="col-sm-3 tr-course-list-date">
-                                <h5>Dec 3, 2017</h5>
+                                <h5>{{course.eventTime}}</h5>
                                 <a>View</a>
                             </div>
                         </div>
@@ -133,13 +137,44 @@
                 <ul class="list-group tr-tab-content"
                     id="completed"
                     data-tab-type="list">
-
+                    <li class="list-group-item" ng-repeat="course in model.courses.completed">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs tr-course-list-img">
+                                <img ng-src="course.icon">
+                                <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
+                            </div>
+                            <div class="col-sm-7 tr-course-list-info">
+                                <h5><b>{{course.primaryTopic}}</b></h5>
+                                <h4>{{course.name}}</h4>
+                                <div ng-show="course.secondaryTopic">Related topic: {{course.secondaryTopic}}</div>
+                            </div>
+                            <div class="col-sm-3 tr-course-list-date">
+                                <h5>{{course.eventTime}}</h5>
+                                <a>View</a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="list-group tr-tab-content"
                     id="interested"
                     data-tab-type="list">
-
+                    <li class="list-group-item" ng-repeat="course in model.courses.interested">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs tr-course-list-img">
+                                <img ng-src="course.icon">
+                                <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
+                            </div>
+                            <div class="col-sm-7 tr-course-list-info">
+                                <h5><b>{{course.primaryTopic}}</b></h5>
+                                <h4>{{course.name}}</h4>
+                                <div ng-show="course.secondaryTopic">Related topic: {{course.secondaryTopic}}</div>
+                            </div>
+                            <div class="col-sm-3 tr-course-list-date">
+                                <a>View</a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="list-group tr-tab-content"
@@ -220,24 +255,24 @@
             </div>
 
         </div>
-        <div class="col-sm-3" >
-            <div id="account-history">
-                <div id="account-history-header">
-                    <b>Account History</b>
-                </div>
-                <div id="total-spent">
-                    Total Spent:
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <i>2017-12-03</i>
-                    </div>
-                    <div class="col-xs-8">
-                        dalsfjadsklj dafdsf adfadsf
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--<div class="col-sm-3" >-->
+            <!--<div id="account-history">-->
+                <!--<div id="account-history-header">-->
+                    <!--<b>Account History</b>-->
+                <!--</div>-->
+                <!--<div id="total-spent">-->
+                    <!--Total Spent:-->
+                <!--</div>-->
+                <!--<hr>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-4">-->
+                        <!--<i>2017-12-03</i>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-8">-->
+                        <!--dalsfjadsklj dafdsf adfadsf-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </section>
