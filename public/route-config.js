@@ -19,7 +19,7 @@
                         CurrentUser: getCurrentUser
                     }
             })
-            .when('/course',{
+            .when('/course/:courseId',{
                 templateUrl: 'views/course/course.view.client.html',
                 controller: 'CourseController',
                 controllerAs: 'model'

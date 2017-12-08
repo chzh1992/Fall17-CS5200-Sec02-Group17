@@ -5,7 +5,7 @@
 
 
     <div id="profile-pic">
-        <img ng-src="{{model.user.profilePic || 'avatar.png'}}" class="tr-horizontal-center">
+        <img ng-src="{{model.user.profilePic}}" class="tr-horizontal-center">
     </div>
 
     <div id="profile-tablist-bar"
@@ -49,19 +49,28 @@
                 </a>
                 <a href=""
                    data-target="#created"
-                   class="tr-tab">
+                   class="tr-tab"
+                   ng-show="model.user.isFaculty">
                     Created
                 </a>
                 <a href=""
                    data-target="#pending"
-                   class="tr-tab">
-                    Pending Validation
-                    <span class="badge">10</span>
+                   class="tr-tab"
+                   ng-show="model.user.isAdmin">
+                    Validation Requests
+                    <span class="badge">{{model.validationRequests.length}}</span>
                 </a>
                 <a href=""
                    data-target="#all-users"
-                   class="tr-tab">
+                   class="tr-tab"
+                   ng-show="model.user.isAdmin"
+                   ng-click="model.getAllUsers()">
                     All Users
+                </a>
+                <a href=""
+                   class="tr-tab"
+                   data-target="#account-history">
+                    Account History
                 </a>
             </div>
         </div>
@@ -84,10 +93,11 @@
                     </a>
                 </div>
                 <div id="info-faculty">
-                    Title <br>
-                    Affiliation <br>
-                    Work Website <br>
-                    Validated by Admin on <br>
+                    {{model.user.title}} <br>
+                    {{model.user.affiliation}} <br>
+                    {{model.user.workWebsite}} <br>
+                    Validated by {{model.user.validator}} <br>
+                    on {{model.user.validatedOn}}<br>
                 </div>
             </div>
 
@@ -95,8 +105,8 @@
                 <a class="tr-role-admin">
                     Admin
                 </a>
-                <div id="info-admin">
-                    Granted by Admin on
+                <div ng-show="model.user.grantor" id="info-admin">
+                    Granted by {{model.user.grantor}} on {{model.user.grantedOn}}
                 </div>
             </div>
 
@@ -112,13 +122,23 @@
         <div class="col-sm-8">
             <div id="profile-tabpane">
 
+                <div class="tr-failure-message"
+                     ng-show="model.actionDone && !model.operationSucceeded">
+                    Operation Failed!
+                </div>
+
+                <div class="tr-success-message"
+                     ng-show="model.actionDone && model.operationSucceeded">
+                    Operation Succeeded!
+                </div>
+
                 <ul class="list-group tr-tab-content tr-active"
                     id="enrolled"
                     data-tab-type="list">
                     <li class="list-group-item" ng-repeat="course in model.courses.enrolled">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs tr-course-list-img">
-                                <img ng-src="course.icon">
+                                <img ng-src="{{course.icon}}">
                                 <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
                             </div>
                             <div class="col-sm-7 tr-course-list-info">
@@ -128,7 +148,7 @@
                             </div>
                             <div class="col-sm-3 tr-course-list-date">
                                 <h5>{{course.eventTime}}</h5>
-                                <a>View</a>
+                                <a href="#!/course/{{course.id}}">View</a>
                             </div>
                         </div>
                     </li>
@@ -140,7 +160,7 @@
                     <li class="list-group-item" ng-repeat="course in model.courses.completed">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs tr-course-list-img">
-                                <img ng-src="course.icon">
+                                <img ng-src="{{course.icon}}">
                                 <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
                             </div>
                             <div class="col-sm-7 tr-course-list-info">
@@ -150,7 +170,7 @@
                             </div>
                             <div class="col-sm-3 tr-course-list-date">
                                 <h5>{{course.eventTime}}</h5>
-                                <a>View</a>
+                                <a href="#!/course/{{course.id}}">View</a>
                             </div>
                         </div>
                     </li>
@@ -162,7 +182,7 @@
                     <li class="list-group-item" ng-repeat="course in model.courses.interested">
                         <div class="row">
                             <div class="col-sm-2 hidden-xs tr-course-list-img">
-                                <img ng-src="course.icon">
+                                <img ng-src="{{course.icon}}">
                                 <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
                             </div>
                             <div class="col-sm-7 tr-course-list-info">
@@ -171,7 +191,7 @@
                                 <div ng-show="course.secondaryTopic">Related topic: {{course.secondaryTopic}}</div>
                             </div>
                             <div class="col-sm-3 tr-course-list-date">
-                                <a>View</a>
+                                <a href="#!/course/{{course.id}}">View</a>
                             </div>
                         </div>
                     </li>
@@ -180,26 +200,43 @@
                 <ul class="list-group tr-tab-content"
                     id="created"
                     data-tab-type="list">
-
+                    <li class="list-group-item" ng-repeat="course in model.courses.created">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs tr-course-list-img">
+                                <img ng-src="{{course.icon}}">
+                                <ng-rate-it ng-model="course.avgRating" read-only="true"></ng-rate-it>
+                            </div>
+                            <div class="col-sm-7 tr-course-list-info">
+                                <h5><b>{{course.primaryTopic}}</b></h5>
+                                <h4>{{course.name}}</h4>
+                                <div ng-show="course.secondaryTopic">Related topic: {{course.secondaryTopic}}</div>
+                            </div>
+                            <div class="col-sm-3 tr-course-list-date">
+                                <a href="#!/course/{{course.id}}">View</a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="list-group tr-tab-content"
                     id="pending"
                     data-tab-type="list">
-                    <li class="list-group-item">
+                    <li ng-repeat="request in model.validationRequests" class="list-group-item">
                         <div class="row">
                             <div class="col-xs-9">
-                                <h4>First name last name </h4>
-                                <h5><b>Email</b></h5>
-                                Title <br>
-                                Affiliation <br>
-                                Work Website <br>
+                                <h4>{{request.fromName}} </h4>
+                                <h5><b>{{request.fromEmail}}</b></h5>
+                                {{request.title}} <br>
+                                {{request.affiliation}} <br>
+                                {{request.workWebsite}} <br>
                             </div>
                             <div class="col-xs-3 tr-validation-options">
-                                <a class="tr-validation-true">
+                                <a class="tr-validation-true"
+                                   ng-click="model.assessFaculty(request.fromId,true)">
                                     Validate
                                 </a>
-                                <a class="tr-validation-false">
+                                <a class="tr-validation-false"
+                                   ng-click="model.assessFaculty(request.fromId,false)">
                                     Disapprove
                                 </a>
                             </div>
@@ -208,49 +245,78 @@
                     </li>
                 </ul>
 
-                <div class="tr-tab-content"
+                <div class="tr-tab-content row"
                      id="all-users"
                      data-tab-type="normal">
-                    <div class="col-xs-4 tr-user-profile">
-                        <img src="avatar.png" class="tr-horizontal-center">
-                        <div class="tr-user-profile-info">
-                            UserId <br>
-                            <b>Name</b> <br>
-                            Email <br>
-                            <div>
-                                <a class="tr-role-admin">
-                                    Admin
-                                </a>
-                            </div>
 
-                            <div>
-                                <a class="tr-grant-option">
-                                    Grant Admin Power
-                                </a>
-                            </div>
+                    <div class="col-sm-4" ng-repeat="user in model.allUsers">
+                        <div class="tr-user-profile">
+                            <img ng-src="{{user.profilePic}}" class="tr-horizontal-center">
+                            <div class="tr-user-profile-info">
+                                {{user.id}} <br>
+                                <b>{{user.name}}</b> <br>
+                                {{user.email}} <br>
+                                <div ng-show="user.isAdmin">
+                                    <a class="tr-role-admin">
+                                        Admin
+                                    </a>
+                                </div>
 
+                                <div ng-show="!user.isAdmin">
+                                    <a href=""
+                                       class="tr-grant-option"
+                                       ng-click="model.grantAdminPower(user.id)">
+                                        Grant Admin Power
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-                <!--<ul class="list-group tr-tab-content">-->
-                    <!--<li>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-3">-->
-                                <!--User ID-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-3">-->
-                                <!--Name-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-3">-->
-                                <!--Email-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-3">-->
-                                <!--Admin Power-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <div class="tr-tab-content"
+                     id="account-history"
+                     data-tab-type="list">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    Course Name
+                                </div>
+                                <div class="col-xs-2">
+                                    Enrollment Date
+                                </div>
+                                <div class="col-xs-2">
+                                    Completion Date
+                                </div>
+                                <div class="col-xs-4">
+                                    Amount Paid (Confirmation Code)
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-repeat="item in model.history">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    {{item.courseName}}
+                                </div>
+                                <div class="col-xs-2">
+                                    {{item.enrolledOn}}
+                                </div>
+                                <div class="col-xs-2">
+                                    {{item.completedOn}}
+                                </div>
+                                <div class="col-xs-4">
+                                    {{item.amountPaid}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <h3 class="pull-right">Total: {{model.total}}</h3>
+                </div>
 
             </div>
 

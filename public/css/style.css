@@ -137,3 +137,20 @@ ul[class~="tr-navbar"], ul[class~="tr-tablist"]{
 .tr-tab-content{
     display: none;
 }
+
+.tr-failure-message, .tr-success-message{
+    color: white;
+    text-align: center;
+    width: 30%;
+    padding: 5px;
+    margin-bottom: 10px;
+
+}
+
+.tr-failure-message{
+    background-color: #D64242;
+}
+
+.tr-success-message{
+    background-color: #14D519;
+}

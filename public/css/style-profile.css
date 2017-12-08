@@ -92,21 +92,21 @@
     margin-bottom: 2px;
 }
 
-#account-history{
-    min-height: 300px;
-    max-height: 300px;
-    margin-top: 10px;
-    margin-left: -15px;
-    background-color: white;
-    overflow: scroll;
-    overflow-x: hidden;
-}
+/*#account-history{*/
+    /*min-height: 300px;*/
+    /*max-height: 300px;*/
+    /*margin-top: 10px;*/
+    /*margin-left: -15px;*/
+    /*background-color: white;*/
+    /*overflow: scroll;*/
+    /*overflow-x: hidden;*/
+/*}*/
 
-@media (max-width: 768px){
-    #account-history{
-        margin-left: 0;
-    }
-}
+/*@media (max-width: 768px){*/
+    /*#account-history{*/
+        /*margin-left: 0;*/
+    /*}*/
+/*}*/
 
 #account-history-header{
     padding-top: 15px;
@@ -205,13 +205,18 @@
     position: relative;
     background-color: white;
     padding: 0;
-    margin: 0 15px;
+    margin-bottom: 15px;
+    height: 255px;
 }
 
 .tr-user-profile-info{
     padding: 0 15px;
     padding-top: 140px;
     text-align: center;
+}
+
+.tr-user-profile-info .tr-role-admin{
+    margin-top: 10px;
 }
 
 a[class~="tr-grant-option"]{
@@ -224,3 +229,4 @@ a[class~="tr-grant-option"]{
     margin-top: 10px;
     margin-bottom: 15px;
 }
+
