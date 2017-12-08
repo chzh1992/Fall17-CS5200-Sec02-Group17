@@ -155,9 +155,9 @@ function timeStringToDisplay(jsDate){
 
 function addHistoryInfo(accountInfo,conn,userId){
     return conn
-        .execute("select Course.Name as cn, CourseTaken.PaymentTimestamp as pts, CourseTaken.CompletedTimestamp as cts, concat(Course.Cost, ' (', CourseTaken.ConfirmationCode, ')') as cost, (select sum(Course.Cost) from CourseTaken inner join Course on CourseTaken.CourseId = Course.CourseId where CourseTaken.StudentId = '1001') as total " +
+        .execute("select Course.Name as cn, CourseTaken.PaymentTimestamp as pts, CourseTaken.CompletedTimestamp as cts, concat(Course.Cost, ' (', CourseTaken.ConfirmationCode, ')') as cost, (select sum(Course.Cost) from CourseTaken inner join Course on CourseTaken.CourseId = Course.CourseId where CourseTaken.StudentId = ?) as total " +
                  "from CourseTaken inner join Course on CourseTaken.CourseId = Course.CourseId " +
-                 "where CourseTaken.StudentId = ?",[userId])
+                 "where CourseTaken.StudentId = ?",[userId,userId])
         .then(
             function ([rows,fields]){
                 accountInfo.history = [];

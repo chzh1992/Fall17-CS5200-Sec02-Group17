@@ -10,7 +10,7 @@
 
         function login(){
             $http
-                .post('/testLogin',{username: 'user1@gmail.com',password:'user1'})
+                .post('/testLogin',{username: 'Student1-zc@group17.com',password:'123'})
                 .then(
                     function (status){
                         $location.url('/user');
