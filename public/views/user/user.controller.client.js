@@ -3,7 +3,7 @@
         .module('TrainlyIo')
         .controller('UserController',UserController);
 
-    function UserController(UserService,CurrentUser){
+    function UserController(UserService,CurrentUser,$scope){
         const model = this;
 
         model.assessFaculty = assessFaculty;
@@ -12,7 +12,6 @@
 
         function init(){
             model.user = CurrentUser;
-            model.actionDone = false;
             UserService
                 .getAccountInfo()
                 .then(
@@ -27,12 +26,11 @@
         init();
 
         function assessFaculty(facultyId,passed){
-            model.actionDone = true;
             UserService
                 .assessFaculty(facultyId,passed)
                 .then(
                     function (doc){
-                        model.operationSucceeded = true;
+                        $scope.operationSucceeded = true;
                         for (var i = 0; i< model.validationRequests.length; i++){
                             var request = model.validationRequests[i];
                             if (request.fromId == facultyId){
@@ -42,7 +40,7 @@
                         }
                     },
                     function (err){
-                        model.operationSucceeded = false;
+                        $scope.operationSucceeded = false;
                     }
                 );
         }
@@ -58,7 +56,6 @@
         }
 
         function grantAdminPower(userId){
-            model.actionDone = true;
             UserService
                 .grantAdminPower(userId)
                 .then(
@@ -69,12 +66,21 @@
                                 break;
                             }
                         }
-                        model.operationSucceeded = true;
+                        $scope.operationSucceeded = true;
                     },
                     function (err){
-                        model.operationSucceeded = false;
+                        $scope.operationSucceeded = false;
                     }
-                )
+                );
+        }
+
+        model.test = test;
+        function test(){
+            if ($scope.operationSucceeded === undefined){
+                $scope.operationSucceeded = true;
+            } else{
+                $scope.operationSucceeded = !$scope.operationSucceeded;
+            }
         }
     }
 })();

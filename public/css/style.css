@@ -138,13 +138,18 @@ ul[class~="tr-navbar"], ul[class~="tr-tablist"]{
     display: none;
 }
 
-.tr-failure-message, .tr-success-message{
-    color: white;
+
+.tr-message-box{
     text-align: center;
+}
+
+.tr-message-box a{
+    color: white;
     width: 30%;
+    text-decoration: none;
     padding: 5px;
     margin-bottom: 10px;
-
+    display: inline-block;
 }
 
 .tr-failure-message{

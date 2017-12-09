@@ -56,49 +56,38 @@
                     </div>
                 </div>
             </div>
-            <div id="course-material-list">
+            <div id="course-material-list" tr-course-material-list>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="tr-course-material">
-                            <div>
-                                <a href="https://course.ccs.neu.edu/cs5200f17/">https://course.ccs.neu.edu/cs5200f17/</a>
-                            </div>
-                            Size: <br>
-                            Type: <br>
-                        </div>
-                        <div class="tr-course-material-ordinal">
-                            <span class="tr-center">Material 1</span>
-                        </div>
-                    </li>
+                    <li class="list-group-item" ng-repeat="material in model.courseMaterials">
 
-                    <li class="list-group-item">
                         <div class="tr-course-material">
-                            <a href="https://course.ccs.neu.edu/cs5200f17/">https://course.ccs.neu.edu/cs5200f17/</a>
-                        </div>
-                        <div class="tr-course-material-ordinal">
-                            <span class="tr-center">Material 1</span>
-                        </div>
-                    </li>
+                            <div ng-switch="material.type">
+                                <div ng-switch-when="DownloadableFile">
+                                    <ng-include src="'views/course/material/downloadable-file.html'"></ng-include>
+                                </div>
+                                <div ng-switch-when="Link">
+                                    <div ng-if="!material.isVideo">
+                                        <ng-include src="'views/course/material/link.html'"></ng-include>
+                                    </div>
+                                    <div ng-if="material.isVideo">
+                                        <ng-include src="'views/course/material/video.html'"></ng-include>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="Post">
+                                    <ng-include src="'views/course/material/post.html'"></ng-include>
+                                </div>
 
-                    <li class="list-group-item">
-                        <div class="tr-course-material">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PIQSEq6tEVs"></iframe>
                             </div>
                         </div>
+
                         <div class="tr-course-material-ordinal">
-                            <span class="tr-center">Material 1</span>
+                            <span class="tr-center">Material {{material.ordinal}}</span>
                         </div>
                     </li>
 
-                    <li class="list-group-item">
-                        <div class="tr-course-material">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                        <div class="tr-course-material-ordinal">
-                            <span class="tr-center">Material 1</span>
+                    <li class="list-group-item tr-course-material-disabled">
+                        <div class="tr-course-material ">
+
                         </div>
                     </li>
 
