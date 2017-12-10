@@ -56,11 +56,14 @@
                     </div>
                 </div>
             </div>
-            <div id="course-material-list" tr-course-material-list>
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="material in model.courseMaterials">
 
-                        <div class="tr-course-material">
+            <div id="course-material-list" >
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        tr-course-material
+                        ng-repeat="material in model.courseMaterials">
+
+                        <div class="tr-course-material" >
                             <div ng-switch="material.type">
                                 <div ng-switch-when="DownloadableFile">
                                     <ng-include src="'views/course/material/downloadable-file.html'"></ng-include>
@@ -76,22 +79,24 @@
                                 <div ng-switch-when="Post">
                                     <ng-include src="'views/course/material/post.html'"></ng-include>
                                 </div>
-
                             </div>
                         </div>
 
                         <div class="tr-course-material-ordinal">
                             <span class="tr-center">Material {{material.ordinal}}</span>
                         </div>
+
+                        <div class="tr-course-material-shade"></div>
                     </li>
 
-                    <li class="list-group-item tr-course-material-disabled">
-                        <div class="tr-course-material ">
+                    <!--<li class="list-group-item tr-course-material-disabled">-->
+                        <!--<div class="tr-course-material ">-->
 
-                        </div>
-                    </li>
+                        <!--</div>-->
+                    <!--</li>-->
 
                 </ul>
+                <button ng-click="model.test()">test</button>
             </div>
 
             <div>
@@ -185,3 +190,11 @@
     </div>
 
 </section>
+
+<div class="tr-course-full-screen-message">
+123123211231231
+</div>
+
+<div class="tr-course-full-screen-message">
+
+</div>

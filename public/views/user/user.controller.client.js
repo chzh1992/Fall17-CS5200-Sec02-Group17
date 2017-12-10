@@ -74,13 +74,13 @@
                 );
         }
 
-        model.test = test;
-        function test(){
-            if ($scope.operationSucceeded === undefined){
-                $scope.operationSucceeded = true;
-            } else{
-                $scope.operationSucceeded = !$scope.operationSucceeded;
-            }
-        }
+        // model.test = test;
+        // function test(){
+        //     if ($scope.operationSucceeded === undefined){
+        //         $scope.operationSucceeded = true;
+        //     } else{
+        //         $scope.operationSucceeded = !$scope.operationSucceeded;
+        //     }
+        // }
     }
 })();

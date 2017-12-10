@@ -15,7 +15,6 @@
             successMessage.hide();
             failureMessage.hide();
             scope.$watch('operationSucceeded',function (nv,ov){
-                console.log(nv,ov);
                 if (nv){
                     successMessage.fadeIn().delay(1000).fadeOut();
                 }

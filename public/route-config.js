@@ -23,6 +23,11 @@
                 templateUrl: 'views/course/course.view.client.html',
                 controller: 'CourseController',
                 controllerAs: 'model'
+            })
+            .when('/statistics',{
+                templateUrl: 'views/statistics/statistics.view.client.html',
+                controller: 'StatisticsController',
+                controllerAs: 'model'
             });
 
         function getCurrentUser($q,$location,UserService){
