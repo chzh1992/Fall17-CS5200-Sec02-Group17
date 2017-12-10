@@ -5,7 +5,9 @@
 
     function CourseService($http){
         return {
-            getCourseInfo: getCourseInfo
+            getCourseInfo: getCourseInfo,
+            completeMaterial: completeMaterial,
+            enroll: enroll
         };
 
         function getCourseInfo(courseId){
@@ -18,5 +20,25 @@
                 );
         }
 
+        function completeMaterial(completion){
+
+            const url = "/api/material/complete";
+            return $http.post(url,completion)
+                .then(
+                    function (response){
+                        return response.data;
+                    }
+                );
+        }
+
+        function enroll(userId,courseId){
+            const url = "/api/course/enroll";
+            return $http.post(url,{userId: userId, courseId: courseId})
+                .then(
+                    function (response){
+                        return response.data;
+                    }
+                );
+        }
     }
 })();

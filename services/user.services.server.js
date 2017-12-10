@@ -30,7 +30,7 @@ function getAccountInfo(req,res){
             .then(
                 function (conn){
                     // get the user's courses
-                    var accountInfo = {};
+                    const accountInfo = {};
                     addCourseInfo(accountInfo,conn,userId)
                         .then(
                             // get account history
@@ -112,14 +112,14 @@ function addCourseInfo(accountInfo,conn,userId){
             "order by Category asc, AvgRating desc, CourseId asc",[userId,userId,userId])
         .then(
             function ([rows,fields]) {
-                var courses = {
+                const courses = {
                     enrolled: [],
                     completed: [],
                     interested: [],
                     created: []
                 };
                 for (var row in rows) {
-                    var course = {
+                    const course = {
                         id: rows[row].CourseId,
                         name: rows[row].Name,
                         icon: rows[row].Icon,
@@ -160,6 +160,7 @@ function addHistoryInfo(accountInfo,conn,userId){
                  "where CourseTaken.StudentId = ?",[userId,userId])
         .then(
             function ([rows,fields]){
+                console.log(rows);
                 accountInfo.history = [];
                 for (var row in rows){
                     var historyItem = {

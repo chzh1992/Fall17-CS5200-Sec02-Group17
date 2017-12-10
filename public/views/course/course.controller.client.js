@@ -3,8 +3,11 @@
         .module('TrainlyIo')
         .controller('CourseController',CourseController);
 
-    function CourseController($sce,$scope,CourseService,UserService){
+    function CourseController($sce,$scope,CourseService,UserService,$routeParams,$location){
         const model = this;
+
+        model.completeMaterial = completeMaterial;
+        model.enroll = enroll;
 
         function init(){
 
@@ -19,6 +22,23 @@
                     }
                 );
 
+            CourseService
+                .getCourseInfo($routeParams['courseId'])
+                .then(
+                    function (courseInfo){
+                        model.course = courseInfo.course;
+                        model.creators = courseInfo.creators;
+                        model.courseMaterials = courseInfo.courseMaterials;
+                        model.courseQuestions = courseInfo.courseQuestions;
+                        model.userStatus = courseInfo.userStatus;
+                        $scope.lastCompleted = courseInfo.userStatus.lastCompleted;
+                        $scope.courseJustCompleted = false;
+
+                        if (!model.course.icon){
+                            model.course.icon = "../thom-schneider-108615.jpg";
+                        }
+                    }
+                )
             
             // $scope.lastCompleted = 0;
             // model.courseMaterials = [
@@ -50,11 +70,40 @@
         }
         init();
 
-        model.test = test;
+        // model.test = test;
+        //
+        // function test(){
+        //     $scope.lastCompleted += 1;
+        // }
 
-        function test(){
-            $scope.lastCompleted += 1;
+        function completeMaterial(material){
+            if (material.ordinal > $scope.lastCompleted){
+                const completion = {
+                    materialId: material.id,
+                    courseCompleted: material.ordinal == model.courseMaterials.length,
+                    courseId: model.course.id
+                };
+                CourseService
+                    .completeMaterial(completion)
+                    .then(
+                        function (doc){
+                            $scope.lastCompleted += 1;
+                            if ($scope.lastCompleted == model.courseMaterials.length){
+                                $scope.courseJustCompleted = true;
+                            }
+                        }
+                    )
+            }
         }
 
+        function enroll(userId){
+            CourseService
+                .enroll(userId,model.course.id)
+                .then(
+                    function (doc){
+                        $location.reload();
+                    }
+                )
+        }
     }
 })();

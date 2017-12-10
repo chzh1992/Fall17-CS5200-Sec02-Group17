@@ -51,6 +51,7 @@ app.use(express.static(__dirname + '/public'));
 // });
 
 require('./services/user.services.server');
+require('./services/course.service.server');
 
 const port = process.env.PORT || 3000;
 app.listen(port);
