@@ -1,5 +1,5 @@
 if (process.env.PORT === undefined){
-    require('./env');
+   // require('./env');
 }
 
 const connectionPool = require('./mysql2-config');
@@ -53,6 +53,7 @@ app.use(app.express.static(__dirname + '/public'));
 // });q
 
 require('./services/user.service.server.js');
+require('./services/search.service.server.js');
 
 var port = process.env.PORT || 3000;
 app.listen(port);
