@@ -15,6 +15,16 @@
                 controller: 'UserController',
                 controllerAs: 'model'
             })
+            .when('/login', {
+                templateUrl: 'views/user/login.view.html',
+                controller: 'LoginController',
+                controllerAs: 'model'
+            })
+            .when('/register', {
+                templateUrl: 'views/user/register.view.html',
+                controller: 'RegisterController',
+                controllerAs: 'model'
+            })
             .when('/course',{
                 templateUrl: 'views/course/course.view.client.html',
                 controller: 'CourseController',
