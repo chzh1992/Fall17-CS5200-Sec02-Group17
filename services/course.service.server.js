@@ -4,6 +4,7 @@ const connectionPool = require('../mysql2-config');
 app.get('/api/course/:courseId',getCourseInfo);
 app.post('/api/material/complete',completeMaterial);
 app.post('/api/course/enroll',enrollStudent);
+app.get('/api/course',getAllCourses);
 
 function timeStringToDisplay(jsDate){
     return jsDate ? [jsDate.getFullYear(),jsDate.getMonth()+1,jsDate.getDate()].join('-') : null;
@@ -277,9 +278,10 @@ function enrollStudent(req,res){
         .then(
             function (conn){
                 conn
-                    .execute("insert into CourseTaken (StudentId,CourseId,ConfirmationCode,PaymentTimestamp) values (?,?,uuid().curtime()",userId,courseId)
+                    .execute("insert into CourseTaken (StudentId,CourseId,ConfirmationCode,PaymentTimestamp) values (?,?,1000,curtime())",[userId,courseId])
                     .then(
                         function (){
+                            conn.release();
                             res.sendStatus(200);
                         }
                     );
@@ -287,6 +289,29 @@ function enrollStudent(req,res){
         );
 }
 
+function getAllCourses(req,res){
+    const courses = [];
+    connectionPool
+        .getConnection()
+        .then(
+            function (conn){
+                return conn.query("select * from Course")
+                    .then(
+                        function ([rows,fields]){
+                            conn.release();
+                            for (const row in rows){
+                                const course = {
+                                    id: rows[row].CourseId,
+                                    name: rows[row].Name
+                                };
+                                courses.push(course);
+                            }
+                            res.json(courses);
+                        }
+                    );
+            }
+        );
+}
 
 
 

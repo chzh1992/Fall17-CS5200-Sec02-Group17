@@ -53,7 +53,6 @@ app.use(express.static(__dirname + '/public'));
 
 require('./services/user.service.server');
 require('./services/course.service.server');
-require('./services/search.service.server.js');
 
 const port = process.env.PORT || 3000;
 app.listen(port);

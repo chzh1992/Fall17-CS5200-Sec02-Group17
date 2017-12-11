@@ -9,7 +9,7 @@
         };
 
         function linkFunction(scope,element){
-            angular.element(element).height(angular.element($window).height());
+            angular.element(element).css('min-height',angular.element($window).height());
         }
     }
 })();

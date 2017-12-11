@@ -10,7 +10,9 @@
             assessFaculty: assessFaculty,
             getAllUsers: getAllUsers,
             grantAdminPower: grantAdminPower,
-            login: login
+            login: login,
+            register: register,
+            logout: logout
         };
 
         function checkLoggedIn(){
@@ -70,6 +72,16 @@
         function login(user){
             const url = '/api/user/login';
             return $http.post(url,user);
+        }
+
+        function register(user){
+            const url = '/api/user/register';
+            return $http.post(url,user);
+        }
+
+        function logout(){
+            const url = '/api/user/logout';
+            return $http.post(url);
         }
     }
 })();

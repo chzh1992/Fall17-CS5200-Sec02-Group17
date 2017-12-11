@@ -3,15 +3,22 @@
         <a href="#!/">Trainly</a>
     </span>
     <ul class="tr-navbar tr-vertical-center tr-large-device-content" tr-underlined-navbar>
-        <li>
-            <a href="">
+        <li ng-show="!model.user">
+            <a href="#!/login">
+                Log In
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
+        </li>
+        <li ng-show="model.user && model.course">
+            <a href="#!/user">
                 My Profile
                 <div class="tr-navbar-item-underline">
                 </div>
             </a>
         </li>
-        <li>
-            <a href="">
+        <li ng-show="model.user">
+            <a href="" ng-click="model.logout()">
                 Log Out
                 <div class="tr-navbar-item-underline">
                 </div>

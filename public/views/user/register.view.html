@@ -137,6 +137,9 @@
             Sign up for an account
         </div>
         <hr>
+        <div class="alert alert-danger" ng-show="model.message">
+            {{model.message}}
+        </div>
         <form class="form-horizontal" ng-submit="model.register(model.user)">
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>

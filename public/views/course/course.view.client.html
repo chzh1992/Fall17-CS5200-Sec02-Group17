@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <h2 ng-if="!model.user"><a>Log in</a> to enroll in this course</h2>
+            <h2 ng-if="!model.user"><a href="#!/login">Log in</a> to enroll in this course</h2>
             <h2 ng-if="model.userStatus.isCreator">You're one of the faculty.</h2>
             <h2 ng-if="model.user && !model.userStatus.isEnrolled"><a ng-click="model.enroll(model.user.id)">Enroll in this course</a></h2>
             <h2 ng-if="model.userStatus.isEnrolled">
@@ -116,7 +116,6 @@
                         <!--</li>-->
 
                     </ul>
-                    <button ng-click="model.test()">test</button>
                 </div>
 
                 <div>

@@ -3,11 +3,12 @@
         .module('TrainlyIo')
         .controller('CourseController',CourseController);
 
-    function CourseController($sce,$scope,CourseService,UserService,$routeParams,$location){
+    function CourseController($sce,$scope,CourseService,UserService,$routeParams,$location,$route){
         const model = this;
 
         model.completeMaterial = completeMaterial;
         model.enroll = enroll;
+        model.logout = logout;
 
         function init(){
 
@@ -104,7 +105,17 @@
                 .enroll(userId,model.course.id)
                 .then(
                     function (doc){
-                        $location.reload();
+                        $route.reload();
+                    }
+                )
+        }
+
+        function logout(){
+            UserService
+                .logout()
+                .then(
+                    function (doc){
+                        $location.url('/');
                     }
                 )
         }

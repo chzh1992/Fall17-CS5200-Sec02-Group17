@@ -3,12 +3,13 @@
         .module('TrainlyIo')
         .controller('UserController',UserController);
 
-    function UserController(UserService,CurrentUser,$scope){
+    function UserController(UserService,CurrentUser,$scope,$location){
         const model = this;
 
         model.assessFaculty = assessFaculty;
         model.getAllUsers = getAllUsers;
         model.grantAdminPower = grantAdminPower;
+        model.logout = logout;
 
         function init(){
             model.user = CurrentUser;
@@ -75,6 +76,16 @@
                         $scope.operationSucceeded = false;
                     }
                 );
+        }
+
+        function logout(){
+            UserService
+                .logout()
+                .then(
+                    function (doc){
+                        $location.url('/');
+                    }
+                )
         }
 
         // model.test = test;

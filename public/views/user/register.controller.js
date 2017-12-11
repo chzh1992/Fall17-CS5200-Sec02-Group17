@@ -5,9 +5,9 @@
 
     function RegisterController(UserService,$location,$scope, $window) {
 
-        var vm=this;
-        vm.register=register;
-        vm.message=null;
+        var vm = this;
+        vm.register = register;
+        vm.message = null;
 
         function init(){
             vm.user = {
@@ -17,8 +17,6 @@
         init();
 
         function register(user){
-
-            console.log(vm.user.isFaculty);
 
             // console.log(user);
             // if (!user) {
@@ -81,6 +79,16 @@
             //         function (error){
             //             console.log(error);
             //         })
+            UserService
+                .register(vm.user)
+                .then(
+                    function (doc){
+                        $location.url('/user');
+                    },
+                    function (err){
+                        vm.message = "Failed";
+                    }
+                )
         }
     }
 

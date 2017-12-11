@@ -3,19 +3,30 @@
         .module('TrainlyIo')
         .controller('HomeController',HomeController);
 
-    function HomeController($http,$location){
+    function HomeController($http,$route,UserService){
         const model = this;
 
-        model.login = login;
+        model.logout = logout;
 
-        function login(){
-            $http
-                .post('/testLogin',{username: 'user1@gmail.com',password:'user1'})
+        function init(){
+            UserService
+                .checkLoggedIn()
                 .then(
-                    function (status){
-                        $location.url('/user');
+                    function (user){
+                        model.user = user;
                     }
                 );
+        }
+        init();
+
+        function logout(){
+            UserService
+                .logout()
+                .then(
+                    function (doc){
+                        $route.reload();
+                    }
+                )
         }
     }
 })();
