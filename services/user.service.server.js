@@ -21,7 +21,8 @@ app.put('/api/admin/grantAdminPower/:userId',grantAdminPower);
 
 function checkLoggedIn(req,res){
     if (req.isAuthenticated()){
-        res.json(req.user);
+        console.log(req.user);
+        res.json(req.user)
     } else{
         res.sendStatus(403);
     }
@@ -88,6 +89,32 @@ function getAccountInfo(req,res){
 }
 
 function addCourseInfo(accountInfo,conn,userId){
+    var sql = "select acst.CourseId as CourseId, acst.Name as Name, acst.Icon as Icon, acst.PrimaryTopic as PrimaryTopic, group_concat(acst.SecondaryTopic separator ', ') as SecondaryTopic, ctr.AvgRating as AvgRating, acst.Category as Category, acst.EventTime as EventTime " +
+        "from " +
+        "(select ac.CourseId as CourseId, ac.Name as Name, ac.Icon as Icon, ac.PrimaryTopic as PrimaryTopic, CourseTopic.Name as SecondaryTopic, ac.Category as Category, ac.EventTime as EventTime " +
+        "from " +
+        "(select Course.CourseId as CourseId, Course.Name as Name, Course.Icon as Icon, CourseTopic.Name as PrimaryTopic, if(CourseTaken.CompletedTimestamp is null,'Enrolled','Completed') as Category, if(CourseTaken.CompletedTimestamp is null, CourseTaken.PaymentTimestamp,CourseTaken.CompletedTimestamp) as EventTime " +
+        "from CourseTaken inner join Course on CourseTaken.CourseId = Course.CourseId " +
+        "inner join CourseTopic on Course.PrimaryTopicId = CourseTopic.TopicId " +
+        "where CourseTaken.StudentId = ? union " +
+        "select Course.CourseId as CourseId, Course.Name as Name, Course.Icon as Icon, CourseTopic.Name as PrimaryTopic, 'Interested' as Category, null as EventTime " +
+        "from CourseInterested inner join Course on CourseInterested.CourseId = Course.CourseId " +
+        "inner join CourseTopic on Course.PrimaryTopicId = CourseTopic.TopicId " +
+        "where CourseInterested.StudentId = ? union " +
+        "select Course.CourseId as CourseId, Course.Name as Name, Course.Icon as Icon, CourseTopic.Name as PrimaryTopic, 'Created' as Category, CourseCreated.Timestamp as EventTime " +
+        "from CourseCreated inner join Course on CourseCreated.CourseId = Course.CourseId " +
+        "inner join CourseTopic on Course.PrimaryTopicId = CourseTopic.TopicId " +
+        "where CourseCreated.FacultyId =  ?) ac " +
+        "left join SecondaryTopic on ac.CourseId = SecondaryTopic.CourseId " +
+        "left join CourseTopic on SecondaryTopic.TopicId = CourseTopic.TopicId) acst " +
+        "left join " +
+        "(select CourseId, avg(Rating) as AvgRating " +
+        "from CourseTaken " +
+        "group by CourseId) ctr " +
+        "on acst.CourseId = ctr.CourseId " +
+        "group by CourseId " +
+        "order by Category asc, AvgRating desc, CourseId asc";
+    console.log(sql);
     return conn
         .execute(
             "select acst.CourseId as CourseId, acst.Name as Name, acst.Icon as Icon, acst.PrimaryTopic as PrimaryTopic, group_concat(acst.SecondaryTopic separator ', ') as SecondaryTopic, ctr.AvgRating as AvgRating, acst.Category as Category, acst.EventTime as EventTime " +
@@ -165,7 +192,7 @@ function addHistoryInfo(accountInfo,conn,userId){
             "where CourseTaken.StudentId = ?",[userId,userId])
         .then(
             function ([rows,fields]){
-                console.log(rows);
+                conn.release();
                 accountInfo.history = [];
                 for (var row in rows){
                     var historyItem = {

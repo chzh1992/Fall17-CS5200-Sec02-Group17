@@ -5,6 +5,7 @@ const app = require('./express-config');
 const session = require('express-session');
 const passport = require('passport');
 const express = require('express');
+const bcrypt = require('bcrypt');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -54,6 +55,18 @@ app.use(express.static(__dirname + '/public'));
 require('./services/user.service.server');
 require('./services/course.service.server');
 require('./services/report.service.server');
+
+app.get('/getHash/:code',getHash);
+
+function getHash(req,res){
+    const code = req.params['code'];
+    bcrypt.hash(code,10)
+        .then(
+            function (hash){
+                res.json(hash);
+            }
+        )
+}
 
 const port = process.env.PORT || 3000;
 app.listen(port);
