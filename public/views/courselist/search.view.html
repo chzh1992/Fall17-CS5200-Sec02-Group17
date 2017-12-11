@@ -1,0 +1,26 @@
+<body>
+<div class="container" ng-controller="SearchController">
+
+<div>
+    <section ng-show="model.searchResult">
+        <h3 class="text-uppercase">Course List</h3>
+        <table class="table  table-responsive">
+            <thead>
+            <tr>
+                <th>Course Id</th>
+                <th>Course</th>
+                <th>Link to Enroll</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="course in model.searchResult">
+                <td>{{course.id}}</td>
+                <td>{{course.name}}</td>
+                <td> <a href="">Details</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</div>
+</body>

@@ -24,6 +24,21 @@
                 controller: 'CourseController',
                 controllerAs: 'model'
             })
+            .when('/search', {
+                templateUrl: 'views/courselist/search.view.html',
+                controller: 'SearchController',
+                controllerAs: 'model'
+            })
+            .when('/login', {
+                templateUrl: 'views/user/login.view.html',
+                controller: 'LoginController',
+                controllerAs: 'model'
+            })
+            .when('/register', {
+                templateUrl: 'views/user/register.view.html',
+                controller: 'RegisterController',
+                controllerAs: 'model'
+            })
             .when('/statistics',{
                 templateUrl: 'views/statistics/statistics.view.client.html',
                 controller: 'StatisticsController',

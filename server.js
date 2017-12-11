@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 require('./passport-config');
+=======
+if (process.env.PORT === undefined){
+   // require('./env');
+}
+
+>>>>>>> jm
 const connectionPool = require('./mysql2-config');
 
 const app = require('./express-config');
@@ -48,7 +55,10 @@ app.use(express.static(__dirname + '/public'));
 //                 console.log(err);
 //             }
 //         );
-// });
+// });q
+
+require('./services/user.service.server.js');
+require('./services/search.service.server.js');
 
 require('./services/user.services.server');
 require('./services/course.service.server');
