@@ -89,7 +89,8 @@
                         $location.url('/user');
                     },
                     function (err){
-                        vm.message = "Failed";
+                        console.log(err);
+                        vm.message = err.data;
                     }
                 )
         }

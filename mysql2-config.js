@@ -10,7 +10,7 @@ if (process.env.PORT === undefined){
                 host: "127.0.0.1",
                 user: "root",
                 password: "123456",
-                database: "trainlyiolocal",
+                database: "trainly_group17",
                 Promise: bluebird
             }
         );

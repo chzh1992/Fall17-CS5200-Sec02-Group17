@@ -568,6 +568,11 @@ function register(req,res){
                                     )
                                     .then(
                                         function (){
+                                            return insertIntoPhoneTable(conn,user);
+                                        }
+                                    )
+                                    .then(
+                                        function (){
                                             conn.query('commit');
                                         }
                                     );
@@ -577,8 +582,17 @@ function register(req,res){
                                         function (result){
                                             user.userId = result[0].insertId;
                                             return ;
+                                        },
+                                        function (err){
+                                            res.status(500);
+                                            res.send('Email Already Registered');
                                         }
                                     )
+                                    .then(
+                                        function (){
+                                            return insertIntoPhoneTable(conn,user);
+                                        }
+                                    );
                             }
                         }
                     )
@@ -626,6 +640,33 @@ function logout(req,res){
     res.sendStatus(200);
 }
 
+function insertIntoPhoneTable(conn,user){
+    const sqlParams = [];
+    const statement = [];
+    if (user.phone1) {
+        sqlParams.push(user.userId,user.phone1);
+        statement.push('( ? , ? )');
+    }
+    if (user.phone2) {
+        sqlParams.push(user.userId,user.phone2);
+        statement.push('( ? , ? )');
+    }
+    if (user.phone3) {
+        sqlParams.push(user.userId,user.phone3);
+        statement.push('( ? , ? )');
+    }
+    if (user.phone4) {
+        sqlParams.push(user.userId,user.phone4);
+        statement.push('( ? , ? )');
+    }
 
+    if (statement.length > 0){
+        const sql = statement.join(' , ');
+        console.log(sql);
+        return conn
+            .execute("insert into Phone (UserId,PhoneNumber) values " + sql ,sqlParams);
+    }
+
+}
 
 
