@@ -1,0 +1,37 @@
+.tr-login-tab, .tr-register-tab{
+    text-align: center;
+    border: 2px solid gray;
+    padding: 20px;
+    border-radius: 20px;
+
+}
+
+@media (max-width: 500px){
+    .tr-login-tab{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px){
+    .tr-register-tab{
+        width: 95%;
+    }
+}
+
+.tr-login-tab{
+    width: 500px;
+    margin: 0 10px;
+}
+
+.tr-register-tab{
+    width: 700px;
+}
+
+.tr-login-header{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tr-login-tab .btn, .tr-register-tab .btn{
+    margin-bottom: 15px;
+}

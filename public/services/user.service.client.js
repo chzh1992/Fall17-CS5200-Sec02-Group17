@@ -9,7 +9,8 @@
             getAccountInfo: getAccountInfo,
             assessFaculty: assessFaculty,
             getAllUsers: getAllUsers,
-            grantAdminPower: grantAdminPower
+            grantAdminPower: grantAdminPower,
+            login: login
         };
 
         function checkLoggedIn(){
@@ -64,6 +65,11 @@
                         return response.data;
                     }
                 );
+        }
+
+        function login(user){
+            const url = '/api/user/login';
+            return $http.post(url,user);
         }
     }
 })();

@@ -243,7 +243,7 @@ function completeMaterial(req,res){
                             function () {
                                 if (completion.courseCompleted) {
                                     conn
-                                        .execute("update CourseTaken set CompletionTimestamp = curtime() where StudentId = ? and CourseId = ?", [userId, completion.courseId])
+                                        .execute("update CourseTaken set CompletedTimestamp = curtime() where StudentId = ? and CourseId = ?", [userId, completion.courseId])
                                         .then(
                                             function () {
                                                 return conn.query("commit");

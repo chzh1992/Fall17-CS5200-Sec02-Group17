@@ -1,5 +1,5 @@
 (function(){
-    "use strict";
+    // "use strict";
     angular
         .module("TrainlyIo")
         .controller("LoginController",LoginController);
@@ -24,7 +24,7 @@
                 .then(function(response) {
                     console.log(response);
                     //$rootScope.currentUser = response.data;
-                    $location.url("/");
+                    $location.url("/user");
                     },
                     function(err){
                         vm.message = "username or password not found";

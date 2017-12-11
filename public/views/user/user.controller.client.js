@@ -12,6 +12,9 @@
 
         function init(){
             model.user = CurrentUser;
+            if (model.user.profilePic == ""){
+                model.user.profilePic = '../avatar.png';
+            }
             UserService
                 .getAccountInfo()
                 .then(
