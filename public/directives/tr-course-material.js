@@ -28,7 +28,6 @@
                     $timeout(function(){
                         height = courseMatListItem.height();
                         width = courseMatListItem.width();
-                        console.log(height,width);
                         if (scope.material.ordinal > nv + 1) {
                             courseMatListItem.find('.tr-course-material-shade').show();
                             courseMatListItem.find('.tr-course-material').hide();

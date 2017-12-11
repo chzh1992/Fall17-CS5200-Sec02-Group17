@@ -182,15 +182,25 @@ function addCourseQuestions(courseInfo,conn,courseId){
     const sqlParams = courseInfo.userStatus.isCreator ? [courseId] : [courseInfo.userStatus.id,courseId];
     courseInfo.courseQuestions = [];
     return conn
-        .execute("select *, count(LikedQuestion.StudentId) as likes " +
-                 "from (select cq.qid as qid, cq.cid as cid, cq.pflag as pflag, cq.qerid as qerid, cq.qest as qest, cq.ans as ans, cq.qername as qername, concat(User.FirstName, ' ', User.LastName) as aername " +
-                 "from (select CourseQuestion.QuestionId as qid, CourseQuestion.PublicFlag as pflag, CourseQuestion.QuestionerId as qerid, CourseQuestion.CourseId as cid, CourseQuestion.Question as qest, CourseQuestion.Answer as ans, concat(User.FirstName, ' ', User.LastName) as qername, CourseQuestion.AnswererId as aerid " +
+        .execute("select *, group_concat(CourseMaterial.Name separator ' ') as relMat " +
+                 "from " +
+                 "(select *, count(LikedQuestion.StudentId) as likes " +
+                 "from " +
+                 "(select cq.qid as qid, cq.cid as cid, cq.pflag as pflag, cq.qerid as qerid, cq.qest as qest, cq.ans as ans, cq.qername as qername, concat(User.FirstName, ' ', User.LastName) as aername " +
+                 "from " +
+                 "(select CourseQuestion.QuestionId as qid, CourseQuestion.PublicFlag as pflag, CourseQuestion.QuestionerId as qerid, CourseQuestion.CourseId as cid, CourseQuestion.Question as qest, CourseQuestion.Answer as ans, concat(User.FirstName, ' ', User.LastName) as qername, CourseQuestion.AnswererId as aerid " +
                  "from CourseQuestion inner join `User` on CourseQuestion.QuestionerId = User.UserId " +
-                 (courseInfo.userStatus.isCreator ? "" : "where CourseQuestion.publicFlag = 1 or CourseQuestion.QuestionerId = ?") + ")cq " +
+                 (courseInfo.userStatus.isCreator ? "" : "where CourseQuestion.publicFlag = 1 or CourseQuestion.QuestionerId = ? ") + ") cq " +
                  "left join `User` on cq.aerid = User.UserId) cqa " +
-                 "left join LikedQuestion on cqa.qid = LikedQuestion.QuestionId " +
+                 "left join " +
+                 "LikedQuestion on cqa.qid = LikedQuestion.QuestionId " +
                  "where cid = ? " +
-                 "group by LikedQuestion.QuestionId",sqlParams)
+                 "group by LikedQuestion.QuestionId) cqal " +
+                 "left join " +
+                 "CourseMaterialQuestion on cqal.qid = CourseMaterialQuestion.QuestionId " +
+                 "left join " +
+                 "CourseMaterial on CourseMaterialQuestion.CourseMaterialId = CourseMaterial.CourseMaterialId " +
+                 "group by cqal.qid",sqlParams)
         .then(
             function ([rows,fields]){
                 console.log(rows.length);
@@ -204,7 +214,8 @@ function addCourseQuestions(courseInfo,conn,courseId){
                         answer: result.ans,
                         questioner: result.qername,
                         answerer: result.aername,
-                        likes: result.likes
+                        likes: result.likes,
+                        relatedMaterials: result.relMat.split(' ')
                     };
                     courseInfo.courseQuestions.push(question);
                 }
@@ -212,17 +223,6 @@ function addCourseQuestions(courseInfo,conn,courseId){
             }
         );
 }
-
-
-// var sql = "select *, count(LikedQuestion.StudentId) as likes " +
-//             "from (select cq.qid as qid, cq.cid as cid, cq.pflag as pflag, cq.qerid as qerid, cq.qest as qest, cq.ans as ans, cq.qername as qername, concat(User.FirstName, ' ', User.LastName) as aername " +
-//             "from (select CourseQuestion.QuestionId as qid, CourseQuestion.PublicFlag as pflag, CourseQuestion.QuestionerId as qerid, CourseQuestion.CourseId as cid, CourseQuestion.Question as qest, CourseQuestion.Answer as ans, concat(User.FirstName, ' ', User.LastName) as qername, CourseQuestion.AnswererId as aerid " +
-//             "from CourseQuestion inner join `User` on CourseQuestion.QuestionerId = User.UserId " +
-//             courseInfo.userStatus.isCreator ? "" : "where CourseQuestion.publicFlag = 1 or CourseQuestion.QuestionerId = ?" + ")cq " +
-//             "left join `User` on cq.aerid = User.UserId) cqa " +
-//             "left join LikedQuestion on cqa.qid = LikedQuestion.QuestionId " +
-//             "where cid = ? " +
-//             "group by LikedQuestion.QuestionId";
 
 function completeMaterial(req,res){
     const completion = req.body;

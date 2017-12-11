@@ -7,13 +7,21 @@
         {{request.workWebsite}} <br>
     </div>
     <div class="col-xs-3 tr-validation-options">
-        <a class="tr-validation-true"
-           ng-click="model.assessFaculty(request.fromId,true)">
-            Validate
-        </a>
-        <a class="tr-validation-false"
-           ng-click="model.assessFaculty(request.fromId,false)">
-            Disapprove
-        </a>
+        <div ng-show="request.passed === undefined">
+            <a class="tr-validation-true"
+               ng-click="model.assessFaculty(request.fromId,true)">
+                Validate
+            </a>
+            <a class="tr-validation-false"
+               ng-click="model.assessFaculty(request.fromId,false)">
+                Disapprove
+            </a>
+        </div>
+        <div ng-show="request.passed">
+            Validated!
+        </div>
+        <div ng-show="request.passed == false">
+            Disapproved!
+        </div>
     </div>
 </div>

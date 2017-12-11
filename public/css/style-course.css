@@ -59,7 +59,6 @@
 }
 
 .tr-course-material-ordinal{
-    width: 160px;
     height: 50px;
     background-color: skyblue;
     color: white;
@@ -76,6 +75,12 @@
     overflow: scroll;
     border-radius: 10px;
     border: 2px gray solid;
+}
+
+.tr-question-board .badge{
+    margin-right: 5px;
+    color: white;
+    background-color: red;
 }
 
 .tr-question-label{
@@ -139,3 +144,40 @@
     padding: 5px 15px;
 }
 
+div[tr-course-completion-message] {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: black;
+    opacity: .8;
+    color: white;
+    display: none;
+}
+
+.tr-completion-message-closer{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background-color: white;
+    color: black;
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+a[class~="tr-comment-button"]{
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    background-color: limegreen;
+    color: white;
+}
+
+#course-creator span{
+    margin-right: 20px;
+}

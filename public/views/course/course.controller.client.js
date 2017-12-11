@@ -30,8 +30,10 @@
                         model.creators = courseInfo.creators;
                         model.courseMaterials = courseInfo.courseMaterials;
                         model.courseQuestions = courseInfo.courseQuestions;
-                        model.userStatus = courseInfo.userStatus;
-                        $scope.lastCompleted = courseInfo.userStatus.lastCompleted;
+                        if (courseInfo.userStatus){
+                            model.userStatus = courseInfo.userStatus;
+                            $scope.lastCompleted = courseInfo.userStatus.lastCompleted;
+                        }
                         $scope.courseJustCompleted = false;
 
                         if (!model.course.icon){
@@ -70,11 +72,11 @@
         }
         init();
 
-        // model.test = test;
-        //
-        // function test(){
-        //     $scope.lastCompleted += 1;
-        // }
+        model.test = test;
+
+        function test(){
+            $scope.courseJustCompleted = true;
+        }
 
         function completeMaterial(material){
             if (material.ordinal > $scope.lastCompleted){

@@ -34,7 +34,7 @@
                         for (var i = 0; i< model.validationRequests.length; i++){
                             var request = model.validationRequests[i];
                             if (request.fromId == facultyId){
-                                request.processed = true;
+                                request.passed = passed;
                                 break;
                             }
                         }
