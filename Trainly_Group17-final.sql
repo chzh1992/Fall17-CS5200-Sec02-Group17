@@ -1,858 +1,537 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost
--- Generation Time: Dec 11, 2017 at 05:31 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: trainlyio
+-- ------------------------------------------------------
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `Trainly_Group17`
+-- Table structure for table `admin`
 --
 
-
-DROP DATABASE IF EXISTS `Trainly_Group17`;
-
-CREATE Database Trainly_Group17 ;
-
-Use Trainly_Group17;
--- --------------------------------------------------------
-
---
--- Table structure for table `Admin`
---
-
-CREATE TABLE `Admin` (
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
   `AdminId` int(11) NOT NULL,
   `AdminTimestamp` datetime DEFAULT NULL,
-  `GrantorId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `GrantorId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`AdminId`),
+  KEY `GrantorId` (`GrantorId`),
+  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`AdminId`) REFERENCES `user` (`UserId`),
+  CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`GrantorId`) REFERENCES `user` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `Admin` (`AdminId`, `AdminTimestamp`, `GrantorId`) VALUES
-(1015, '2017-11-23 21:14:10', NULL),
-(1016, '2017-11-23 21:14:10', 1015),
-(1017, '2017-11-23 21:14:10', 1015),
-(1018, '2017-11-23 21:14:10', 1015),
-(1019, '2017-11-23 21:14:10', 1015),
-(1020, '2017-11-23 21:14:10', 1015),
-(1021, '2017-11-23 21:14:10', 1015),
-(1022, '2017-11-23 21:14:10', 1015),
-(1023, '2017-11-23 21:14:10', 1015),
-(1024, '2017-11-23 21:14:10', 1015);
-
--- --------------------------------------------------------
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1151,'2017-11-23 21:14:10',NULL),(1161,'2017-11-23 21:14:10',1151),(1171,'2017-11-23 21:14:10',1151),(1181,'2017-11-23 21:14:10',1151),(1191,'2017-11-23 21:14:10',1151),(1201,'2017-11-23 21:14:10',1151),(1211,'2017-11-23 21:14:10',1151),(1221,'2017-11-23 21:14:10',1151),(1231,'2017-11-23 21:14:10',1151),(1241,'2017-11-23 21:14:10',1151);
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CompletedMaterial`
+-- Table structure for table `completedmaterial`
 --
 
-CREATE TABLE `CompletedMaterial` (
+DROP TABLE IF EXISTS `completedmaterial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `completedmaterial` (
   `CourseMaterialId` int(11) NOT NULL,
   `StudentId` int(11) DEFAULT NULL,
-  `Timestamp` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Timestamp` datetime NOT NULL,
+  PRIMARY KEY (`CourseMaterialId`),
+  KEY `StudentId` (`StudentId`),
+  CONSTRAINT `completedmaterial_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `coursematerial` (`CourseMaterialId`),
+  CONSTRAINT `completedmaterial_ibfk_2` FOREIGN KEY (`StudentId`) REFERENCES `user` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CompletedMaterial`
+-- Dumping data for table `completedmaterial`
 --
 
-INSERT INTO `CompletedMaterial` (`CourseMaterialId`, `StudentId`, `Timestamp`) VALUES
-(1, 1001, '2013-08-05 18:19:03'),
-(2, 1001, '2013-08-05 18:19:03'),
-(3, 1001, '2013-08-05 18:19:03'),
-(4, 1001, '2013-08-05 18:19:03'),
-(5, 1001, '2013-08-05 18:19:03'),
-(6, 1001, '2013-08-05 18:19:03'),
-(7, 1001, '2013-08-05 18:19:03'),
-(8, 1001, '2013-08-05 18:19:03'),
-(9, 1001, '2013-08-05 18:19:03'),
-(10, 1001, '2013-08-05 18:19:03');
-
--- --------------------------------------------------------
+LOCK TABLES `completedmaterial` WRITE;
+/*!40000 ALTER TABLE `completedmaterial` DISABLE KEYS */;
+INSERT INTO `completedmaterial` VALUES (1,1001,'2013-08-05 18:19:03'),(11,1001,'2013-08-05 18:19:03'),(21,1001,'2013-08-05 18:19:03'),(31,1001,'2013-08-05 18:19:03'),(41,1001,'2013-08-05 18:19:03'),(51,1001,'2013-08-05 18:19:03'),(61,1001,'2013-08-05 18:19:03'),(71,1001,'2013-08-05 18:19:03'),(81,1001,'2013-08-05 18:19:03'),(91,1001,'2013-08-05 18:19:03');
+/*!40000 ALTER TABLE `completedmaterial` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `Course`
+-- Table structure for table `course`
 --
 
-CREATE TABLE `Course` (
-  `CourseId` int(11) NOT NULL,
-  `Description` varchar(100) DEFAULT NULL,
-  `Name` varchar(50) DEFAULT NULL,
+DROP TABLE IF EXISTS `course`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `course` (
+  `CourseId` int(11) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
+  `Name` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
   `PrimaryTopicId` int(11) NOT NULL,
-  `Icon` varchar(100),
-  `Cost` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Icon` longblob,
+  `Cost` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CourseId`),
+  KEY `PrimaryTopicId` (`PrimaryTopicId`),
+  CONSTRAINT `course_ibfk_1` FOREIGN KEY (`PrimaryTopicId`) REFERENCES `coursetopic` (`TopicId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5110 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Course`
+-- Dumping data for table `course`
 --
 
-INSERT INTO `Course` (`CourseId`, `Description`, `Name`, `PrimaryTopicId`, `Icon`, `Cost`) VALUES
-(5000, 'Course1-ab', 'course1', 1, NULL, 1500),
-(5001, 'Course2-ab', 'course2', 2, NULL, 1500),
-(5002, 'Course3-ab', 'course3', 3, NULL, 1500),
-(5003, 'Course4-ab', 'course4', 4, NULL, 1500),
-(5004, 'Course5-ab', 'course5', 5, NULL, 1500),
-(5005, 'Course6-ab', 'course7', 6, NULL, 1500),
-(5006, 'Course7-ab', 'course7', 7, NULL, 1500),
-(5007, 'Course8-ab', 'course8', 8, NULL, 1500),
-(5008, 'Course9-ab', 'course9', 9, NULL, 1500),
-(5009, 'Course10-ab', 'course10', 10, NULL, 1500);
-
--- --------------------------------------------------------
+LOCK TABLES `course` WRITE;
+/*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (5001,'course1','course1',1,NULL,1500),(5011,'course2','course2',2,NULL,1500),(5021,'course3','course3',3,NULL,1500),(5031,'course4','course4',4,NULL,1500),(5041,'course5','course5',5,NULL,1500),(5051,'course6','course7',6,NULL,1500),(5061,'course7','course7',7,NULL,1500),(5071,'course8','course8',8,NULL,1500),(5081,'course9','course9',9,NULL,1500),(5091,'course10','course10',10,NULL,1500),(5101,NULL,'Course1-zc',1,NULL,507),(5102,NULL,'Course2-zc',1,NULL,1427),(5103,NULL,'Course3-zc',1,NULL,1397),(5104,NULL,'Course4-zc',1,NULL,1306),(5105,NULL,'Course5-zc',1,NULL,1246),(5106,NULL,'Course6-zc',1,NULL,1500),(5107,NULL,'Course7-zc',1,NULL,542),(5108,NULL,'Course8-zc',1,NULL,510),(5109,NULL,'Course9-zc',1,NULL,1218);
+/*!40000 ALTER TABLE `course` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseCreated`
+-- Table structure for table `coursecreated`
 --
 
-CREATE TABLE `CourseCreated` (
-  `FacultyId` int(11) NOT NULL,
-  `CourseId` int(11) NOT NULL,
-  `Timestamp` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `coursecreated`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursecreated` (
+  `FacultyId` int(11) NOT NULL DEFAULT '0',
+  `CourseId` int(11) NOT NULL DEFAULT '0',
+  `Timestamp` datetime NOT NULL,
+  PRIMARY KEY (`FacultyId`,`CourseId`),
+  KEY `CourseId` (`CourseId`),
+  CONSTRAINT `coursecreated_ibfk_1` FOREIGN KEY (`FacultyId`) REFERENCES `faculty` (`FacultyId`),
+  CONSTRAINT `coursecreated_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseCreated`
+-- Dumping data for table `coursecreated`
 --
 
-INSERT INTO `CourseCreated` (`FacultyId`, `CourseId`, `Timestamp`) VALUES
-(1010, 5000, '2013-08-05 18:19:03'),
-(1010, 5001, '2013-08-05 18:19:03'),
-(1010, 5002, '2013-08-05 18:19:03'),
-(1010, 5003, '2013-08-05 18:19:03'),
-(1010, 5004, '2013-08-05 18:19:03'),
-(1010, 5005, '2013-08-05 18:19:03'),
-(1010, 5006, '2013-08-05 18:19:03'),
-(1010, 5007, '2013-08-05 18:19:03'),
-(1010, 5008, '2013-08-05 18:19:03'),
-(1010, 5009, '2013-08-05 18:19:03');
-
--- --------------------------------------------------------
+LOCK TABLES `coursecreated` WRITE;
+/*!40000 ALTER TABLE `coursecreated` DISABLE KEYS */;
+INSERT INTO `coursecreated` VALUES (1101,5001,'2013-08-05 18:19:03'),(1101,5011,'2013-08-05 18:19:03'),(1101,5021,'2013-08-05 18:19:03'),(1101,5031,'2013-08-05 18:19:03'),(1101,5041,'2013-08-05 18:19:03'),(1101,5051,'2013-08-05 18:19:03'),(1101,5061,'2013-08-05 18:19:03'),(1101,5071,'2013-08-05 18:19:03'),(1101,5081,'2013-08-05 18:19:03'),(1101,5091,'2013-08-05 18:19:03'),(1253,5101,'2017-11-26 23:18:02'),(1253,5102,'2017-11-26 23:18:02'),(1253,5103,'2017-11-26 23:18:02'),(1253,5104,'2017-11-26 23:18:02'),(1253,5105,'2017-11-26 23:18:02'),(1253,5106,'2017-11-26 23:18:02'),(1256,5101,'2017-11-27 00:06:23'),(1257,5101,'2017-11-27 00:06:23'),(1261,5107,'2017-11-27 00:20:10'),(1261,5108,'2017-11-27 00:20:10'),(1261,5109,'2017-11-27 00:20:10');
+/*!40000 ALTER TABLE `coursecreated` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseInterested`
+-- Table structure for table `courseinterested`
 --
 
-CREATE TABLE `CourseInterested` (
-  `StudentId` int(11) NOT NULL,
-  `CourseId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `courseinterested`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `courseinterested` (
+  `StudentId` int(11) NOT NULL DEFAULT '0',
+  `CourseId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`StudentId`,`CourseId`),
+  KEY `CourseId` (`CourseId`),
+  CONSTRAINT `courseinterested_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `user` (`UserId`),
+  CONSTRAINT `courseinterested_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseInterested`
+-- Dumping data for table `courseinterested`
 --
 
-INSERT INTO `CourseInterested` (`StudentId`, `CourseId`) VALUES
-(1001, 5000),
-(1001, 5001),
-(1001, 5002),
-(1001, 5003),
-(1001, 5004),
-(1001, 5005),
-(1001, 5006),
-(1001, 5007),
-(1001, 5008),
-(1001, 5009);
-
--- --------------------------------------------------------
+LOCK TABLES `courseinterested` WRITE;
+/*!40000 ALTER TABLE `courseinterested` DISABLE KEYS */;
+INSERT INTO `courseinterested` VALUES (1001,5001),(1011,5001),(1041,5001),(1021,5021),(1061,5021),(1031,5031),(1051,5051),(1091,5061),(1071,5091),(1081,5091),(1251,5106);
+/*!40000 ALTER TABLE `courseinterested` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseMaterial`
+-- Table structure for table `coursematerial`
 --
 
-CREATE TABLE `CourseMaterial` (
-  `CourseMaterialId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coursematerial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursematerial` (
+  `CourseMaterialId` int(11) NOT NULL AUTO_INCREMENT,
   `CourseId` int(11) NOT NULL,
   `Ordinal` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Name` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `Type` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`CourseMaterialId`),
+  UNIQUE KEY `CourseId` (`CourseId`,`Ordinal`),
+  CONSTRAINT `coursematerial_ibfk_1` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`)
+) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseMaterial`
+-- Dumping data for table `coursematerial`
 --
 
-INSERT INTO `CourseMaterial` (`CourseMaterialId`, `CourseId`, `Ordinal`, `Name`, `Type`) VALUES
-(1, 5000, 1, 'Material1', 'Post'),
-(2, 5001, 1, 'Material1', 'Post'),
-(3, 5002, 1, 'Material1', 'Post'),
-(4, 5003, 1, 'Material1', 'Post'),
-(5, 5004, 1, 'Material1', 'Post'),
-(6, 5005, 1, 'Material1', 'Post'),
-(7, 5006, 1, 'Material1', 'Post'),
-(8, 5007, 1, 'Material1', 'Post'),
-(9, 5008, 1, 'Material1', 'Post'),
-(10, 5009, 1, 'Material1', 'Post'),
-(11, 5000, 2, 'Material2', 'Link'),
-(12, 5001, 2, 'Material2', 'Link'),
-(13, 5002, 2, 'Material2', 'Link'),
-(14, 5003, 2, 'Material2', 'Link'),
-(15, 5004, 2, 'Material2', 'Link'),
-(16, 5005, 2, 'Material2', 'Link'),
-(17, 5006, 2, 'Material2', 'Link'),
-(18, 5007, 2, 'Material2', 'Link'),
-(19, 5008, 2, 'Material2', 'Link'),
-(20, 5009, 2, 'Material2', 'Link'),
-(21, 5000, 3, 'Material3', 'DownloadableFile'),
-(22, 5001, 3, 'Material3', 'DownloadableFile'),
-(23, 5002, 3, 'Material3', 'DownloadableFile'),
-(24, 5003, 3, 'Material3', 'DownloadableFile'),
-(25, 5004, 3, 'Material3', 'DownloadableFile'),
-(26, 5005, 3, 'Material3', 'DownloadableFile'),
-(27, 5006, 3, 'Material3', 'DownloadableFile'),
-(28, 5007, 3, 'Material3', 'DownloadableFile'),
-(29, 5008, 3, 'Material3', 'DownloadableFile'),
-(30, 5009, 3, 'Material3', 'DownloadableFile');
-
--- --------------------------------------------------------
+LOCK TABLES `coursematerial` WRITE;
+/*!40000 ALTER TABLE `coursematerial` DISABLE KEYS */;
+INSERT INTO `coursematerial` VALUES (1,5001,1,'Material1','Post'),(11,5011,1,'Material1','Post'),(21,5021,1,'Material1','Post'),(31,5031,1,'Material1','Post'),(41,5041,1,'Material1','Post'),(51,5051,1,'Material1','Post'),(61,5061,1,'Material1','Post'),(71,5071,1,'Material1','Post'),(81,5081,1,'Material1','Post'),(91,5091,1,'Material1','Post'),(101,5001,2,'Material2','Link'),(111,5011,2,'Material2','Link'),(121,5021,2,'Material2','Link'),(131,5031,2,'Material2','Link'),(141,5041,2,'Material2','Link'),(151,5051,2,'Material2','Link'),(161,5061,2,'Material2','Link'),(171,5071,2,'Material2','Link'),(181,5081,2,'Material2','Link'),(191,5091,2,'Material2','Link'),(201,5001,3,'Material3','DownloadableFile'),(211,5011,3,'Material3','DownloadableFile'),(221,5021,3,'Material3','DownloadableFile'),(231,5031,3,'Material3','DownloadableFile'),(241,5041,3,'Material3','DownloadableFile'),(251,5051,3,'Material3','DownloadableFile'),(261,5061,3,'Material3','DownloadableFile'),(271,5071,3,'Material3','DownloadableFile'),(281,5081,3,'Material3','DownloadableFile'),(291,5091,3,'Material3','DownloadableFile');
+/*!40000 ALTER TABLE `coursematerial` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseMaterialQuestion`
+-- Table structure for table `coursematerialquestion`
 --
 
-CREATE TABLE `CourseMaterialQuestion` (
-  `QuestionId` int(11) NOT NULL,
-  `CourseMaterialId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `coursematerialquestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursematerialquestion` (
+  `QuestionId` int(11) NOT NULL DEFAULT '0',
+  `CourseMaterialId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`QuestionId`,`CourseMaterialId`),
+  KEY `CourseMaterialId` (`CourseMaterialId`),
+  CONSTRAINT `coursematerialquestion_ibfk_1` FOREIGN KEY (`QuestionId`) REFERENCES `coursequestion` (`QuestionId`),
+  CONSTRAINT `coursematerialquestion_ibfk_2` FOREIGN KEY (`CourseMaterialId`) REFERENCES `coursematerial` (`CourseMaterialId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseMaterialQuestion`
+-- Dumping data for table `coursematerialquestion`
 --
 
-INSERT INTO `CourseMaterialQuestion` (`QuestionId`, `CourseMaterialId`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `coursematerialquestion` WRITE;
+/*!40000 ALTER TABLE `coursematerialquestion` DISABLE KEYS */;
+INSERT INTO `coursematerialquestion` VALUES (1,1),(11,1),(21,1),(31,1),(41,1),(51,1),(61,1),(71,1),(81,1),(91,1);
+/*!40000 ALTER TABLE `coursematerialquestion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseQuestion`
+-- Table structure for table `coursequestion`
 --
 
-CREATE TABLE `CourseQuestion` (
-  `QuestionId` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coursequestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursequestion` (
+  `QuestionId` int(11) NOT NULL AUTO_INCREMENT,
   `QuestionerId` int(11) NOT NULL,
-  `Question` text,
-  `Answer` text,
+  `Question` text COLLATE latin1_general_ci,
+  `Answer` text COLLATE latin1_general_ci,
   `AnswererId` int(11) DEFAULT NULL,
   `PublicFlag` tinyint(1) NOT NULL,
-  `CourseId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `CourseQuestion`
---
-
-INSERT INTO `CourseQuestion` (`QuestionId`, `QuestionerId`, `Question`, `Answer`, `AnswererId`, `PublicFlag`, `CourseId`) VALUES
-(1, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(2, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(3, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(4, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(5, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(6, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(7, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(8, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(9, 1001, 'Question1', 'Answer1', 1010, 1, 5001),
-(10, 1001, 'Question1', 'Answer1', 1010, 1, 5001);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `CourseTaken`
---
-
-CREATE TABLE `CourseTaken` (
-  `StudentId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL,
-  `Rating` enum('1','2','3','4','5') DEFAULT NULL,
+  PRIMARY KEY (`QuestionId`),
+  KEY `QuestionerId` (`QuestionerId`),
+  KEY `AnswererId` (`AnswererId`),
+  CONSTRAINT `coursequestion_ibfk_1` FOREIGN KEY (`QuestionerId`) REFERENCES `user` (`UserId`),
+  CONSTRAINT `coursequestion_ibfk_2` FOREIGN KEY (`AnswererId`) REFERENCES `faculty` (`FacultyId`)
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `coursequestion`
+--
+
+LOCK TABLES `coursequestion` WRITE;
+/*!40000 ALTER TABLE `coursequestion` DISABLE KEYS */;
+INSERT INTO `coursequestion` VALUES (1,1001,'Question1','Answer1',1101,1,5001),(11,1001,'Question1','Answer1',1101,1,5001),(21,1001,'Question1','Answer1',1101,1,5001),(31,1001,'Question1','Answer1',1101,1,5001),(41,1001,'Question1','Answer1',1101,1,5001),(51,1001,'Question1','Answer1',1101,1,5001),(61,1001,'Question1','Answer1',1101,1,5001),(71,1001,'Question1','Answer1',1101,1,5001),(81,1001,'Question1','Answer1',1101,1,5001),(91,1001,'Question1','Answer1',1101,1,5001),(101,1251,'question','answer',1253,1,5101),(102,1251,'question','answer',1253,1,5101),(103,1251,'question','answer',1253,1,5101),(104,1251,'question','answer',1253,1,5101),(105,1251,'question','answer',1256,1,5101);
+/*!40000 ALTER TABLE `coursequestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `coursetaken`
+--
+
+DROP TABLE IF EXISTS `coursetaken`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursetaken` (
+  `StudentId` int(11) NOT NULL DEFAULT '0',
+  `CourseId` int(11) NOT NULL DEFAULT '0',
+  `Rating` enum('1','2','3','4','5') COLLATE latin1_general_ci DEFAULT NULL,
   `CompletedTimestamp` datetime DEFAULT NULL,
-  `Comment` text,
+  `Comment` text COLLATE latin1_general_ci,
   `ConfirmationCode` int(11) DEFAULT NULL,
-  `PaymentTimestamp` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `PaymentTimestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`StudentId`,`CourseId`),
+  KEY `CourseId` (`CourseId`),
+  CONSTRAINT `coursetaken_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `user` (`UserId`),
+  CONSTRAINT `coursetaken_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseTaken`
+-- Dumping data for table `coursetaken`
 --
 
-INSERT INTO `CourseTaken` (`StudentId`, `CourseId`, `Rating`, `CompletedTimestamp`, `Comment`, `ConfirmationCode`, `PaymentTimestamp`) VALUES
-(1001, 5000, '1', '2013-08-05 18:19:03', 'Good', 1000, '2013-03-05 18:19:03'),
-(1001, 5001, '1', '2013-08-05 18:19:03', 'Good', 2000, '2013-03-05 18:19:03'),
-(1001, 5002, '1', '2013-08-05 18:19:03', 'Good', 3000, '2013-03-05 18:19:03'),
-(1001, 5003, '1', '2013-08-05 18:19:03', 'Good', 4000, '2013-03-05 18:19:03'),
-(1001, 5004, NULL, NULL, NULL, 5000, '2013-08-05 18:19:03'),
-(1001, 5005, NULL, NULL, NULL, 6000, '2013-08-05 18:19:03'),
-(1001, 5006, NULL, NULL, NULL, 7000, '2013-03-05 18:19:03'),
-(1001, 5007, NULL, NULL, NULL, 8000, '2013-08-05 18:19:03'),
-(1001, 5008, NULL, '2013-08-05 18:19:03', 'Good', 9000, '2013-08-05 18:19:03'),
-(1001, 5009, NULL, '2013-08-05 18:19:03', 'Good', 10000, '2013-03-05 18:19:03');
-
--- --------------------------------------------------------
+LOCK TABLES `coursetaken` WRITE;
+/*!40000 ALTER TABLE `coursetaken` DISABLE KEYS */;
+INSERT INTO `coursetaken` VALUES (1001,5001,'1','2013-08-05 18:19:03','Good',1000,'2013-08-05 18:19:03'),(1001,5021,'1','2013-08-05 18:19:03','Good',3000,'2013-08-05 18:19:03'),(1001,5031,'1','2013-08-05 18:19:03','Good',4000,'2013-08-05 18:19:03'),(1001,5041,'1','2013-08-05 18:19:03','Good',5000,'2013-08-05 18:19:03'),(1001,5051,'1','2013-08-05 18:19:03','Good',6000,'2013-08-05 18:19:03'),(1001,5061,'1','2013-08-05 18:19:03','Good',7000,'2013-08-05 18:19:03'),(1001,5071,'1','2013-08-05 18:19:03','Good',8000,'2013-08-05 18:19:03'),(1001,5081,'1','2013-08-05 18:19:03','Good',9000,'2013-08-05 18:19:03'),(1001,5091,'1','2013-08-05 18:19:03','Good',9001,'2013-08-05 18:19:03'),(1011,5001,'5','2013-08-05 18:19:03','Good',2000,'2013-08-05 18:19:03'),(1101,5101,NULL,NULL,NULL,NULL,NULL),(1251,5101,'5','2017-11-26 23:23:32',NULL,NULL,NULL),(1251,5102,'4','2017-11-26 23:23:32',NULL,NULL,NULL),(1251,5103,'2','2017-11-26 23:23:32',NULL,NULL,NULL),(1251,5104,NULL,NULL,NULL,NULL,NULL),(1251,5105,NULL,NULL,NULL,NULL,NULL),(1258,5101,'1','2017-11-27 00:29:50',NULL,NULL,NULL),(1258,5107,'1','2017-11-27 00:21:03',NULL,NULL,NULL),(1259,5101,'5','2017-11-27 00:29:50',NULL,NULL,NULL),(1259,5107,'5','2017-11-27 00:21:03',NULL,NULL,NULL),(1260,5107,'2','2017-11-27 00:21:03',NULL,NULL,NULL),(1262,5108,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `coursetaken` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `CourseTopic`
+-- Table structure for table `coursetopic`
 --
 
-CREATE TABLE `CourseTopic` (
-  `TopicId` int(11) NOT NULL,
-  `Name` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `coursetopic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coursetopic` (
+  `TopicId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(40) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`TopicId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CourseTopic`
+-- Dumping data for table `coursetopic`
 --
 
-INSERT INTO `CourseTopic` (`TopicId`, `Name`) VALUES
-(1, 'Topic1'),
-(2, 'Topic2'),
-(3, 'Topic3'),
-(4, 'Topic4'),
-(5, 'Topic5'),
-(6, 'Topic6'),
-(7, 'Topic7'),
-(8, 'Topic8'),
-(9, 'Topic9'),
-(10, 'Topic10');
-
--- --------------------------------------------------------
+LOCK TABLES `coursetopic` WRITE;
+/*!40000 ALTER TABLE `coursetopic` DISABLE KEYS */;
+INSERT INTO `coursetopic` VALUES (1,'Topic1'),(2,'Topic2'),(3,'Topic3'),(4,'Topic4'),(5,'Topic5'),(6,'Topic6'),(7,'Topic7'),(8,'Topic8'),(9,'Topic9'),(10,'Topic10');
+/*!40000 ALTER TABLE `coursetopic` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `DownloadableFile`
+-- Table structure for table `downloadablefile`
 --
 
-CREATE TABLE `DownloadableFile` (
+DROP TABLE IF EXISTS `downloadablefile`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `downloadablefile` (
   `CourseMaterialId` int(11) NOT NULL,
-  `Path` varchar(60) DEFAULT NULL,
-  `Size` double UNSIGNED DEFAULT NULL,
-  `Type` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Path` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
+  `Size` double unsigned DEFAULT NULL,
+  `Type` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (`CourseMaterialId`),
+  CONSTRAINT `downloadablefile_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `coursematerial` (`CourseMaterialId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `DownloadableFile`
+-- Dumping data for table `downloadablefile`
 --
 
-INSERT INTO `DownloadableFile` (`CourseMaterialId`, `Path`, `Size`, `Type`) VALUES
-(21, 'http://5001+021+03', 2, 'MIME'),
-(22, 'http://5002+022+03', 1.3, 'Null'),
-(23, 'http://5003+023+03', 1.5, 'MIME'),
-(24, 'http://5004+024+03', 3, 'MIME'),
-(25, 'http://5005+025+03', 8.4, 'Null'),
-(26, 'http://5006+026+03', 3.9, 'MIME'),
-(27, 'http://5007+027+03', 1.2, 'MIME'),
-(28, 'http://5008+028+03', 1.5, 'Null'),
-(29, 'http://5009+029+03', 7.9, 'MIME'),
-(30, 'http://5010+030+03', 9.4, 'Null');
-
--- --------------------------------------------------------
+LOCK TABLES `downloadablefile` WRITE;
+/*!40000 ALTER TABLE `downloadablefile` DISABLE KEYS */;
+INSERT INTO `downloadablefile` VALUES (201,'http://5001+021+03',2,'MIME'),(211,'http://5002+022+03',1.3,'Null'),(221,'http://5003+023+03',4,'MIME'),(231,'http://5004+024+03',1.4,'MIME'),(241,'http://5005+025+03',0.5,'Null'),(251,'http://5006+026+03',2.5,'MIME'),(261,'http://5007+027+03',2.4,'MIME'),(271,'http://5008+028+03',3.2,'Null'),(281,'http://5009+029+03',2.1,'MIME'),(291,'http://5010+030+03',2,'Null');
+/*!40000 ALTER TABLE `downloadablefile` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `Faculty`
+-- Table structure for table `faculty`
 --
 
-CREATE TABLE `Faculty` (
+DROP TABLE IF EXISTS `faculty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `faculty` (
   `FacultyId` int(11) NOT NULL,
-  `Title` varchar(20) DEFAULT NULL,
-  `Affiliation` varchar(20) DEFAULT NULL,
-  `WorkWebsite` varchar(200) DEFAULT NULL,
+  `Title` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `Affiliation` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `WorkWebsite` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `ValidationStatus` tinyint(1) DEFAULT NULL,
   `ValidatorId` int(11) DEFAULT NULL,
-  `FacultyTimestamp` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `FacultyTimestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`FacultyId`),
+  KEY `ValidatorId` (`ValidatorId`),
+  CONSTRAINT `faculty_ibfk_1` FOREIGN KEY (`FacultyId`) REFERENCES `user` (`UserId`),
+  CONSTRAINT `faculty_ibfk_2` FOREIGN KEY (`ValidatorId`) REFERENCES `user` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Faculty`
+-- Dumping data for table `faculty`
 --
 
-INSERT INTO `Faculty` (`FacultyId`, `Title`, `Affiliation`, `WorkWebsite`, `ValidationStatus`, `ValidatorId`, `FacultyTimestamp`) VALUES
-(1010, 'Title1', 'Organization1', 'www.organization1.com', 1, NULL, '2017-11-26 01:30:29'),
-(1011, 'Title1', 'Organization1', 'www.organization1.com', 0, NULL, NULL),
-(1012, 'Title1', 'Organization1', 'www.organization1.com', 0, NULL, NULL),
-(1013, 'Title1', 'Organization1', 'www.organization1.com', 0, NULL, NULL),
-(1014, 'Title1', 'Organization1', 'www.organization1.com', 0, NULL, NULL),
-(1015, 'Title2', 'Organization2', 'www.organization2.com', 1, 1021, '2017-11-23 21:17:13'),
-(1016, 'Title2', 'Organization2', 'www.organization2.com', 1, 1022, '2017-11-23 21:17:13'),
-(1017, 'Title2', 'Organization2', 'www.organization2.com', 1, 1023, '2017-11-23 21:17:13'),
-(1018, 'Title2', 'Organization2', 'www.organization2.com', 1, 1024, '2017-11-23 21:17:13'),
-(1019, 'Title2', 'Organization2', 'www.organization2.com', 1, 1024, '2017-11-23 21:17:13');
-
--- --------------------------------------------------------
+LOCK TABLES `faculty` WRITE;
+/*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
+INSERT INTO `faculty` VALUES (1101,'Title1','Organization1','www.organization1.com',1,NULL,'2017-11-26 01:30:29'),(1111,'Title1','Organization1','www.organization1.com',0,NULL,NULL),(1121,'Title1','Organization1','www.organization1.com',0,NULL,NULL),(1131,'Title1','Organization1','www.organization1.com',0,NULL,NULL),(1141,'Title1','Organization1','www.organization1.com',0,NULL,NULL),(1151,'Title2','Organization2','www.organization2.com',1,1201,'2017-11-23 21:17:13'),(1161,'Title2','Organization2','www.organization2.com',1,1211,'2017-11-23 21:17:13'),(1171,'Title2','Organization2','www.organization2.com',1,1221,'2017-11-23 21:17:13'),(1181,'Title2','Organization2','www.organization2.com',1,1231,'2017-11-23 21:17:13'),(1191,'Title2','Organization2','www.organization2.com',1,1241,'2017-11-23 21:17:13'),(1253,NULL,NULL,NULL,1,1151,'2017-11-26 23:08:43'),(1256,NULL,NULL,NULL,1,1151,'2017-11-26 23:54:04'),(1257,NULL,NULL,NULL,1,1151,'2017-11-26 23:54:04'),(1261,NULL,NULL,NULL,1,1151,'2017-11-27 00:18:39');
+/*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `LikedQuestion`
+-- Table structure for table `likedquestion`
 --
 
-CREATE TABLE `LikedQuestion` (
-  `QuestionId` int(11) NOT NULL,
-  `StudentId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `likedquestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `likedquestion` (
+  `QuestionId` int(11) NOT NULL DEFAULT '0',
+  `StudentId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`QuestionId`,`StudentId`),
+  KEY `StudentId` (`StudentId`),
+  CONSTRAINT `likedquestion_ibfk_1` FOREIGN KEY (`QuestionId`) REFERENCES `coursequestion` (`QuestionId`),
+  CONSTRAINT `likedquestion_ibfk_2` FOREIGN KEY (`StudentId`) REFERENCES `user` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `LikedQuestion`
+-- Dumping data for table `likedquestion`
 --
 
-INSERT INTO `LikedQuestion` (`QuestionId`, `StudentId`) VALUES
-(1, 1001),
-(2, 1001),
-(3, 1001),
-(4, 1001),
-(5, 1001),
-(6, 1001),
-(7, 1001),
-(8, 1001),
-(9, 1001),
-(10, 1001);
-
--- --------------------------------------------------------
+LOCK TABLES `likedquestion` WRITE;
+/*!40000 ALTER TABLE `likedquestion` DISABLE KEYS */;
+INSERT INTO `likedquestion` VALUES (1,1001),(11,1001),(21,1001),(31,1001),(41,1001),(51,1001),(61,1001),(71,1001),(81,1001),(91,1001);
+/*!40000 ALTER TABLE `likedquestion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `Link`
+-- Table structure for table `link`
 --
 
-CREATE TABLE `Link` (
+DROP TABLE IF EXISTS `link`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `link` (
   `CourseMaterialId` int(11) NOT NULL,
-  `Url` varchar(60) NOT NULL,
-  `VideoFlag` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Url` varchar(60) COLLATE latin1_general_ci NOT NULL,
+  `VideoFlag` tinyint(1) NOT NULL,
+  PRIMARY KEY (`CourseMaterialId`),
+  CONSTRAINT `link_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `coursematerial` (`CourseMaterialId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Link`
+-- Dumping data for table `link`
 --
 
-INSERT INTO `Link` (`CourseMaterialId`, `Url`, `VideoFlag`) VALUES
-(11, 'http://5001+011+02', 1),
-(12, 'http://5001+012+02', 1),
-(13, 'http://5001+013+02', 1),
-(14, 'http://5001+014+02', 1),
-(15, 'http://5001+015+02', 0),
-(16, 'http://5001+016+02', 0),
-(17, 'http://5001+017+02', 1),
-(18, 'http://5001+018+02', 0),
-(19, 'http://5001+019+02', 0),
-(20, 'http://5001+020+02', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `link` WRITE;
+/*!40000 ALTER TABLE `link` DISABLE KEYS */;
+INSERT INTO `link` VALUES (101,'http://5001+011+02',1),(111,'http://5001+012+02',0),(121,'http://5001+013+02',1),(131,'http://5001+014+02',1),(141,'http://5001+015+02',0),(151,'http://5001+016+02',0),(161,'http://5001+017+02',1),(171,'http://5001+018+02',0),(181,'http://5001+019+02',0),(191,'http://5001+020+02',1);
+/*!40000 ALTER TABLE `link` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `Phone`
+-- Table structure for table `phone`
 --
 
-CREATE TABLE `Phone` (
-  `UserId` int(11) NOT NULL,
-  `PhoneNumber` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `phone`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `phone` (
+  `UserId` int(11) NOT NULL DEFAULT '0',
+  `PhoneNumber` varchar(10) COLLATE latin1_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`UserId`,`PhoneNumber`),
+  CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Phone`
+-- Dumping data for table `phone`
 --
 
-INSERT INTO `Phone` (`UserId`, `PhoneNumber`) VALUES
-(1000, '1234567890'),
-(1001, '1234567890'),
-(1002, '1234567890'),
-(1003, '1234567890'),
-(1004, '1234567890'),
-(1005, '1234567890'),
-(1006, '1234567890'),
-(1007, '1234567890'),
-(1008, '1234567890'),
-(1009, '1234567890');
-
--- --------------------------------------------------------
+LOCK TABLES `phone` WRITE;
+/*!40000 ALTER TABLE `phone` DISABLE KEYS */;
+INSERT INTO `phone` VALUES (1001,'1234567890'),(1011,'1234567890'),(1021,'1234567890'),(1031,'1234567890'),(1041,'1234567890'),(1051,'1234567890'),(1061,'1234567890'),(1071,'1234567890'),(1081,'1234567890'),(1091,'1234567890');
+/*!40000 ALTER TABLE `phone` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `Post`
+-- Table structure for table `post`
 --
 
-CREATE TABLE `Post` (
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post` (
   `CourseMaterialId` int(11) NOT NULL,
-  `Content` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Content` text COLLATE latin1_general_ci,
+  PRIMARY KEY (`CourseMaterialId`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `coursematerial` (`CourseMaterialId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Post`
+-- Dumping data for table `post`
 --
 
-INSERT INTO `Post` (`CourseMaterialId`, `Content`) VALUES
-(1, 'Text01'),
-(2, 'Text02'),
-(3, 'Text03'),
-(4, 'Text04'),
-(5, 'Text05'),
-(6, 'Text06'),
-(7, 'Text07'),
-(8, 'Text08'),
-(9, 'Text09'),
-(10, 'Text10');
-
--- --------------------------------------------------------
+LOCK TABLES `post` WRITE;
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (1,'Text01'),(11,'Text02'),(21,'Text03'),(31,'Text04'),(41,'Text05'),(51,'Text06'),(61,'Text07'),(71,'Text08'),(81,'Text09'),(91,'Text10');
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `SecondaryTopic`
+-- Table structure for table `secondarytopic`
 --
 
-CREATE TABLE `SecondaryTopic` (
-  `TopicId` int(11) NOT NULL,
-  `CourseId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `secondarytopic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `secondarytopic` (
+  `TopicId` int(11) NOT NULL DEFAULT '0',
+  `CourseId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TopicId`,`CourseId`),
+  KEY `CourseId` (`CourseId`),
+  CONSTRAINT `secondarytopic_ibfk_1` FOREIGN KEY (`TopicId`) REFERENCES `coursetopic` (`TopicId`),
+  CONSTRAINT `secondarytopic_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `SecondaryTopic`
+-- Dumping data for table `secondarytopic`
 --
 
-INSERT INTO `SecondaryTopic` (`TopicId`, `CourseId`) VALUES
-(1, 5001),
-(2, 5001),
-(3, 5001),
-(4, 5001),
-(5, 5001),
-(6, 5001),
-(7, 5001),
-(8, 5001),
-(9, 5001),
-(10, 5001);
-
--- --------------------------------------------------------
+LOCK TABLES `secondarytopic` WRITE;
+/*!40000 ALTER TABLE `secondarytopic` DISABLE KEYS */;
+INSERT INTO `secondarytopic` VALUES (1,5001),(6,5001),(10,5001),(2,5011),(3,5011),(5,5021),(7,5021),(4,5031),(8,5071),(9,5081),(2,5101),(3,5103),(4,5103),(8,5103),(9,5103),(7,5105);
+/*!40000 ALTER TABLE `secondarytopic` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `User`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `User` (
-  `UserId` int(11) NOT NULL,
-  `FirstName` varchar(40) NOT NULL,
-  `LastName` varchar(20) NOT NULL,
-  `Email` varchar(80) DEFAULT NULL,
-  `HashAndSalt` varchar(100) NOT NULL,
-  `Street` varchar(20) DEFAULT NULL,
-  `City` varchar(40) DEFAULT NULL,
-  `Country` varchar(40) DEFAULT NULL,
-  `PostalCode` varchar(10) DEFAULT NULL,
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` varchar(40) COLLATE latin1_general_ci NOT NULL,
+  `LastName` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `Email` varchar(80) COLLATE latin1_general_ci DEFAULT NULL,
+  `HashAndSalt` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `Street` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `City` varchar(40) COLLATE latin1_general_ci DEFAULT NULL,
+  `Country` varchar(40) COLLATE latin1_general_ci DEFAULT NULL,
+  `PostalCode` varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
   `ProfilePic` longblob,
   `FacultyFlag` tinyint(1) NOT NULL DEFAULT '0',
-  `AdminFlag` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `AdminFlag` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`UserId`),
+  UNIQUE KEY `Email` (`Email`)
+) ENGINE=InnoDB AUTO_INCREMENT=1263 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `User`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `User` (`UserId`, `FirstName`, `LastName`, `Email`, `HashAndSalt`, `Street`, `City`, `Country`, `PostalCode`, `ProfilePic`, `FacultyFlag`, `AdminFlag`) VALUES
-(1000, 'User1', 'User1', 'user1@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street1', 'Boston', 'USA', '02115', NULL, 0, 0),
-(1001, 'User2', 'User2', 'user2@gmail.com', '$2a$10$/hiwXx1IBzmuV3ySLXkmR.uHuaVDInpxijI12Kw162nkMz2BFG73u', 'Street2', 'Boston', 'USA', '02115', NULL, 0, 0),
-(1002, 'User3', 'User3', 'user3@gmail.com', '$2a$10$H0pUw/fwLDIdig5qS3ZS1e0MO6YogecKsxWf4qqXglXABESaZ7126', 'Street3', 'NYC', 'USA', '02115', NULL, 0, 0),
-(1003, 'User4', 'User4', 'user4@gmail.com', '$2a$10$LfiwVpIsrRXPWpe1fKB.CuadyZoJC2KLAxOBozeMUUgfs2F.9dU82', 'Street4', 'NYC', 'USA', '02115', NULL, 0, 0),
-(1004, 'User5', 'User5', 'user5@gmail.com', '$2a$10$FmJbiVS.Q67O/94pHSJruO/ZOOFi5tJ8C4d/wyBGPhFoHdFSLSEG6', 'Street5', 'Dallas', 'USA', '02115', NULL, 0, 0),
-(1005, 'User6', 'User6', 'user6@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street6', 'Dallas', 'USA', '02115', NULL, 0, 0),
-(1006, 'User7', 'User7', 'user7@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street7', 'Seattle', 'USA', '02115', NULL, 0, 0),
-(1007, 'User8', 'User8', 'user8@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street8', 'Seattle', 'USA', '02115', NULL, 0, 0),
-(1008, 'User9', 'User9', 'user9@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street9', 'SanFrancisco', 'USA', '02115', NULL, 0, 0),
-(1009, 'User10', 'User10', 'user10@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street10', 'SanFrancisco', 'USA', '02115', NULL, 0, 0),
-(1010, 'User11', 'User11', 'user11@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street11', 'Boston', 'USA', '02115', NULL, 1, 0),
-(1011, 'User12', 'User12', 'user12@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street12', 'Boston', 'USA', '02115', NULL, 1, 0),
-(1012, 'User13', 'User13', 'user13@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street13', 'Boston', 'USA', '02115', NULL, 1, 0),
-(1013, 'User14', 'User14', 'user14@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street14', 'Boston', 'USA', '02115', NULL, 1, 0),
-(1014, 'User15', 'User15', 'user15@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street15', 'Boston', 'USA', '02115', NULL, 1, 0),
-(1015, 'User16', 'User16', 'user16@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street16', 'Boston', 'USA', '02115', NULL, 1, 1),
-(1016, 'User17', 'User17', 'user17@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street17', 'Boston', 'USA', '02115', NULL, 1, 1),
-(1017, 'User18', 'User18', 'user18@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street18', 'Boston', 'USA', '02115', NULL, 1, 1),
-(1018, 'User19', 'User19', 'user19@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street19', 'Boston', 'USA', '02115', NULL, 1, 1),
-(1019, 'User20', 'User20', 'user20@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street20', 'Boston', 'USA', '02115', NULL, 1, 1),
-(1020, 'User21', 'User21', 'user21@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street21', 'Boston', 'USA', '02115', NULL, 0, 1),
-(1021, 'User22', 'User22', 'user22@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street22', 'Boston', 'USA', '02115', NULL, 0, 1),
-(1022, 'User23', 'User23', 'user23@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street23', 'Boston', 'USA', '02115', NULL, 0, 1),
-(1023, 'User24', 'User24', 'user24@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street24', 'Boston', 'USA', '02115', NULL, 0, 1),
-(1024, 'User25', 'User25', 'user25@gmail.com', '$2a$10$Xuu7M1NNd3bL4X61uUglgONMIvUOwgPgz4WwEZqdIwBjjvT/XLWKa', 'Street25', 'Boston', 'USA', '02115', NULL, 0, 1);
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1001,'User1','User1','user1@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street1','Boston','USA','02115',NULL,0,0),(1011,'User2','User2','user2@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street2','Boston','USA','02115',NULL,0,0),(1021,'User3','User3','user3@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street3','NYC','USA','02115',NULL,0,0),(1031,'User4','User4','user4@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street4','NYC','USA','02115',NULL,0,0),(1041,'User5','User5','user5@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street5','Dallas','USA','02115',NULL,0,0),(1051,'User6','User6','user6@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street6','Dallas','USA','02115',NULL,0,0),(1061,'User7','User7','user7@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street7','Seattle','USA','02115',NULL,0,0),(1071,'User8','User8','user8@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street8','Seattle','USA','02115',NULL,0,0),(1081,'User9','User9','user9@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street9','SanFrancisco','USA','02115',NULL,0,0),(1091,'User10','User10','user10@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street10','SanFrancisco','USA','02115',NULL,0,0),(1101,'User11','User11','user11@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street11','Boston','USA','02115',NULL,1,0),(1111,'User12','User12','user12@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street12','Boston','USA','02115',NULL,1,0),(1121,'User13','User13','user13@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street13','Boston','USA','02115',NULL,1,0),(1131,'User14','User14','user14@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street14','Boston','USA','02115',NULL,1,0),(1141,'User15','User15','user15@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street15','Boston','USA','02115',NULL,1,0),(1151,'User16','User16','user16@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street16','Boston','USA','02115',NULL,1,1),(1161,'User17','User17','user17@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street17','Boston','USA','02115',NULL,1,1),(1171,'User18','User18','user18@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street18','Boston','USA','02115',NULL,1,1),(1181,'User19','User19','user19@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street19','Boston','USA','02115',NULL,1,1),(1191,'User20','User20','user20@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street20','Boston','USA','02115',NULL,1,1),(1201,'User21','User21','user21@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street21','Boston','USA','02115',NULL,0,1),(1211,'User22','User22','user22@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street22','Boston','USA','02115',NULL,0,1),(1221,'User23','User23','user23@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street23','Boston','USA','02115',NULL,0,1),(1231,'User24','User24','user24@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street24','Boston','USA','02115',NULL,0,1),(1241,'User25','User25','user25@gmail.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC','Street25','Boston','USA','02115',NULL,0,1),(1251,'Student1-zc','Student1-zc','Student1-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,0,0),(1253,'Faculty1-zc','Faculty1-zc','Faculty1-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,1,0),(1256,'Faculty2-zc','Faculty2-zc','Faculty2-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,1,0),(1257,'Faculty3-zc','Faculty3-zc','Faculty3-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,1,0),(1258,'Student2-zc','Student2-zc','Student2-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,0,0),(1259,'Student3-zc','Student3-zc','Student3-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,0,0),(1260,'Student4-zc','Student4-zc','Student4-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,0,0),(1261,'Faculty4-zc','Faculty4-zc','Faculty4-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,1,0),(1262,'Student5-zc','Student5-zc','Student5-zc@group17.com','$2a$10$NL8bDFTzYh845pEaMYbpC..kNdMTzgZMbyHQ10i2LDnuSV1WEhhPC',NULL,NULL,NULL,NULL,NULL,0,0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `Admin`
---
-ALTER TABLE `Admin`
-  ADD PRIMARY KEY (`AdminId`),
-  ADD KEY `GrantorId` (`GrantorId`);
-
---
--- Indexes for table `CompletedMaterial`
---
-ALTER TABLE `CompletedMaterial`
-  ADD PRIMARY KEY (`CourseMaterialId`),
-  ADD KEY `StudentId` (`StudentId`);
-
---
--- Indexes for table `Course`
---
-ALTER TABLE `Course`
-  ADD PRIMARY KEY (`CourseId`),
-  ADD KEY `PrimaryTopicId` (`PrimaryTopicId`);
-
---
--- Indexes for table `CourseCreated`
---
-ALTER TABLE `CourseCreated`
-  ADD PRIMARY KEY (`FacultyId`,`CourseId`),
-  ADD KEY `CourseId` (`CourseId`);
-
---
--- Indexes for table `CourseInterested`
---
-ALTER TABLE `CourseInterested`
-  ADD PRIMARY KEY (`StudentId`,`CourseId`),
-  ADD KEY `CourseId` (`CourseId`);
-
---
--- Indexes for table `CourseMaterial`
---
-ALTER TABLE `CourseMaterial`
-  ADD PRIMARY KEY (`CourseMaterialId`),
-  ADD UNIQUE KEY `CourseId` (`CourseId`,`Ordinal`);
-
---
--- Indexes for table `CourseMaterialQuestion`
---
-ALTER TABLE `CourseMaterialQuestion`
-  ADD PRIMARY KEY (`QuestionId`,`CourseMaterialId`),
-  ADD KEY `CourseMaterialId` (`CourseMaterialId`);
-
---
--- Indexes for table `CourseQuestion`
---
-ALTER TABLE `CourseQuestion`
-  ADD PRIMARY KEY (`QuestionId`),
-  ADD KEY `QuestionerId` (`QuestionerId`),
-  ADD KEY `AnswererId` (`AnswererId`);
-
---
--- Indexes for table `CourseTaken`
---
-ALTER TABLE `CourseTaken`
-  ADD PRIMARY KEY (`StudentId`,`CourseId`),
-  ADD KEY `CourseId` (`CourseId`);
-
---
--- Indexes for table `CourseTopic`
---
-ALTER TABLE `CourseTopic`
-  ADD PRIMARY KEY (`TopicId`);
-
---
--- Indexes for table `DownloadableFile`
---
-ALTER TABLE `DownloadableFile`
-  ADD PRIMARY KEY (`CourseMaterialId`);
-
---
--- Indexes for table `Faculty`
---
-ALTER TABLE `Faculty`
-  ADD PRIMARY KEY (`FacultyId`),
-  ADD KEY `ValidatorId` (`ValidatorId`);
-
---
--- Indexes for table `LikedQuestion`
---
-ALTER TABLE `LikedQuestion`
-  ADD PRIMARY KEY (`QuestionId`,`StudentId`),
-  ADD KEY `StudentId` (`StudentId`);
-
---
--- Indexes for table `Link`
---
-ALTER TABLE `Link`
-  ADD PRIMARY KEY (`CourseMaterialId`);
-
---
--- Indexes for table `Phone`
---
-ALTER TABLE `Phone`
-  ADD PRIMARY KEY (`UserId`,`PhoneNumber`);
-
---
--- Indexes for table `Post`
---
-ALTER TABLE `Post`
-  ADD PRIMARY KEY (`CourseMaterialId`);
-
---
--- Indexes for table `SecondaryTopic`
---
-ALTER TABLE `SecondaryTopic`
-  ADD PRIMARY KEY (`TopicId`,`CourseId`),
-  ADD KEY `CourseId` (`CourseId`);
-
---
--- Indexes for table `User`
---
-ALTER TABLE `User`
-  ADD PRIMARY KEY (`UserId`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Course`
---
-ALTER TABLE `Course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5010;
---
--- AUTO_INCREMENT for table `CourseMaterial`
---
-ALTER TABLE `CourseMaterial`
-  MODIFY `CourseMaterialId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `CourseQuestion`
---
-ALTER TABLE `CourseQuestion`
-  MODIFY `QuestionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `CourseTopic`
---
-ALTER TABLE `CourseTopic`
-  MODIFY `TopicId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `User`
---
-ALTER TABLE `User`
-  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1025;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `Admin`
---
-ALTER TABLE `Admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`AdminId`) REFERENCES `User` (`UserId`),
-  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`GrantorId`) REFERENCES `User` (`UserId`);
-
---
--- Constraints for table `CompletedMaterial`
---
-ALTER TABLE `CompletedMaterial`
-  ADD CONSTRAINT `completedmaterial_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `CourseMaterial` (`CourseMaterialId`),
-  ADD CONSTRAINT `completedmaterial_ibfk_2` FOREIGN KEY (`StudentId`) REFERENCES `User` (`UserId`);
-
---
--- Constraints for table `Course`
---
-ALTER TABLE `Course`
-  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`PrimaryTopicId`) REFERENCES `CourseTopic` (`TopicId`);
-
---
--- Constraints for table `CourseCreated`
---
-ALTER TABLE `CourseCreated`
-  ADD CONSTRAINT `coursecreated_ibfk_1` FOREIGN KEY (`FacultyId`) REFERENCES `Faculty` (`FacultyId`),
-  ADD CONSTRAINT `coursecreated_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `Course` (`CourseId`);
-
---
--- Constraints for table `CourseInterested`
---
-ALTER TABLE `CourseInterested`
-  ADD CONSTRAINT `courseinterested_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `User` (`UserId`),
-  ADD CONSTRAINT `courseinterested_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `Course` (`CourseId`);
-
---
--- Constraints for table `CourseMaterial`
---
-ALTER TABLE `CourseMaterial`
-  ADD CONSTRAINT `coursematerial_ibfk_1` FOREIGN KEY (`CourseId`) REFERENCES `Course` (`CourseId`);
-
---
--- Constraints for table `CourseMaterialQuestion`
---
-ALTER TABLE `CourseMaterialQuestion`
-  ADD CONSTRAINT `coursematerialquestion_ibfk_1` FOREIGN KEY (`QuestionId`) REFERENCES `CourseQuestion` (`QuestionId`),
-  ADD CONSTRAINT `coursematerialquestion_ibfk_2` FOREIGN KEY (`CourseMaterialId`) REFERENCES `CourseMaterial` (`CourseMaterialId`);
-
---
--- Constraints for table `CourseQuestion`
---
-ALTER TABLE `CourseQuestion`
-  ADD CONSTRAINT `coursequestion_ibfk_1` FOREIGN KEY (`QuestionerId`) REFERENCES `User` (`UserId`),
-  ADD CONSTRAINT `coursequestion_ibfk_2` FOREIGN KEY (`AnswererId`) REFERENCES `Faculty` (`FacultyId`);
-
---
--- Constraints for table `CourseTaken`
---
-ALTER TABLE `CourseTaken`
-  ADD CONSTRAINT `coursetaken_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `User` (`UserId`),
-  ADD CONSTRAINT `coursetaken_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `Course` (`CourseId`);
-
---
--- Constraints for table `DownloadableFile`
---
-ALTER TABLE `DownloadableFile`
-  ADD CONSTRAINT `downloadablefile_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `CourseMaterial` (`CourseMaterialId`);
-
---
--- Constraints for table `Faculty`
---
-ALTER TABLE `Faculty`
-  ADD CONSTRAINT `faculty_ibfk_1` FOREIGN KEY (`FacultyId`) REFERENCES `User` (`UserId`),
-  ADD CONSTRAINT `faculty_ibfk_2` FOREIGN KEY (`ValidatorId`) REFERENCES `User` (`UserId`);
-
---
--- Constraints for table `LikedQuestion`
---
-ALTER TABLE `LikedQuestion`
-  ADD CONSTRAINT `likedquestion_ibfk_1` FOREIGN KEY (`QuestionId`) REFERENCES `CourseQuestion` (`QuestionId`),
-  ADD CONSTRAINT `likedquestion_ibfk_2` FOREIGN KEY (`StudentId`) REFERENCES `User` (`UserId`);
-
---
--- Constraints for table `Link`
---
-ALTER TABLE `Link`
-  ADD CONSTRAINT `link_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `CourseMaterial` (`CourseMaterialId`);
-
---
--- Constraints for table `Phone`
---
-ALTER TABLE `Phone`
-  ADD CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `User` (`UserId`);
-
---
--- Constraints for table `Post`
---
-ALTER TABLE `Post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`CourseMaterialId`) REFERENCES `CourseMaterial` (`CourseMaterialId`);
-
---
--- Constraints for table `SecondaryTopic`
---
-ALTER TABLE `SecondaryTopic`
-  ADD CONSTRAINT `secondarytopic_ibfk_1` FOREIGN KEY (`TopicId`) REFERENCES `CourseTopic` (`TopicId`),
-  ADD CONSTRAINT `secondarytopic_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `Course` (`CourseId`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-12-11 16:48:36
