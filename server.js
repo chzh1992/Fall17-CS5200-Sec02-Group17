@@ -1,17 +1,15 @@
-if (process.env.PORT === undefined){
-    require('./env');
-}
-
+require('./passport-config');
 const connectionPool = require('./mysql2-config');
 
 const app = require('./express-config');
 const session = require('express-session');
 const passport = require('passport');
+const express = require('express');
 
-app.use(app.express.json());
-app.use(app.express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-var sessionOption = {
+const sessionOption = {
     secret: "Group 17",
     resave: false,
     saveUninitialized: false
@@ -22,7 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // configure a public directory to host static content
-app.use(app.express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 // app.get('/',function(req,res){
 //     connectionPool
@@ -50,9 +48,14 @@ app.use(app.express.static(__dirname + '/public'));
 //                 console.log(err);
 //             }
 //         );
-// });
+// });q
 
-var port = process.env.PORT || 3000;
+
+require('./services/user.service.server');
+require('./services/course.service.server');
+require('./services/report.service.server');
+
+const port = process.env.PORT || 3000;
 app.listen(port);
 
 process.on('exit',function(){

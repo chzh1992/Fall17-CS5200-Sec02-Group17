@@ -1,0 +1,22 @@
+#statistics-main-section{
+    padding-top: 80px;
+    background-color: #F5F8FA;
+}
+
+#statistics-header{
+    position: fixed;
+    top: 0;
+}
+
+.tr-nav-brand .glyphicon-chevron-left{
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+.tr-report-list{
+    font-size: 20px;
+}
+
+#search-main-section{
+    padding-top: 80px;
+}

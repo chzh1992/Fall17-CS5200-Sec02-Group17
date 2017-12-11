@@ -1,0 +1,31 @@
+<nav class="tr-nav-header" id="statistics-header">
+    <span class="tr-vertical-center tr-nav-brand">
+        <a href="#!/"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+    </span>
+</nav>
+<div class="container" id="search-main-section">
+    <section>
+        <h3 class="text-uppercase">Course List</h3>
+        <!--<table class="table  table-responsive">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>Course Id</th>-->
+        <!--<th>Course</th>-->
+        <!--<th>Link to Enroll</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="course in model.searchResult">-->
+        <!--<td>{{course.id}}</td>-->
+        <!--<td>{{course.name}}</td>-->
+        <!--<td> <a href="">Details</a></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="course in model.courses">
+                <a href="#!/course/{{course.id}}">{{course.name}}</a>
+            </li>
+        </ul>
+    </section>
+</div>

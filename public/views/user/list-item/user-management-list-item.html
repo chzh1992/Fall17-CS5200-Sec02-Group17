@@ -1,0 +1,21 @@
+<div class="tr-user-profile">
+    <img ng-src="{{user.profilePic ? user.profilePic : '../avatar.png'}}" class="tr-horizontal-center">
+    <div class="tr-user-profile-info">
+        {{user.id}} <br>
+        <b>{{user.name}}</b> <br>
+        {{user.email}} <br>
+        <div ng-show="user.isAdmin">
+            <a class="tr-role-admin">
+                Admin
+            </a>
+        </div>
+
+        <div ng-show="!user.isAdmin">
+            <a href=""
+               class="tr-grant-option"
+               ng-click="model.grantAdminPower(user.id)">
+                Grant Admin Power
+            </a>
+        </div>
+    </div>
+</div>

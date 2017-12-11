@@ -1,0 +1,232 @@
+#profile-main-section{
+    padding-top: 200px;
+    background-color: #F5F8FA;
+    padding-bottom: 25px;
+}
+#profile-pic {
+    width: 25%;
+    height: 200px;
+    position: relative;
+    margin-bottom: -75px;
+    margin-left: 10px;
+}
+
+@media (max-width: 600px){
+    #profile-pic{
+        width: 100%;
+        height: 150px;
+    }
+}
+
+#profile-pic img{
+    border-radius: 150px;
+    height: 100%;
+}
+
+#profile-tablist-bar{
+    background-color: white;
+}
+
+#profile-tablist a{
+    display: inline-block;
+    text-align: center;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#profile-tablist a:hover{
+    color: red;
+}
+
+
+#user-information{
+    padding-top: 40px;
+    text-align: center;
+}
+
+#user-information > div{
+    padding-bottom: 10px;
+    margin-left: 30px;
+}
+
+#info-name{
+    font-size: 25px;
+}
+
+#info-email{
+    font-size: 18px;
+}
+
+#role-faculty, a[class~="tr-role-admin"]{
+    display: inline-block;
+    width: 100px;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+}
+
+#role-faculty{
+    background-color: dodgerblue;
+}
+
+#info-faculty,#info-admin{
+    text-align: left;
+}
+
+#info-address,#info-phone{
+    text-align: left;
+}
+
+.tr-role-admin{
+    background-color: limegreen;
+}
+
+#profile-tabpane{
+    margin-top: 10px;
+}
+
+#profile-tabpane li{
+    margin-bottom: 2px;
+}
+
+/*#account-history{*/
+    /*min-height: 300px;*/
+    /*max-height: 300px;*/
+    /*margin-top: 10px;*/
+    /*margin-left: -15px;*/
+    /*background-color: white;*/
+    /*overflow: scroll;*/
+    /*overflow-x: hidden;*/
+/*}*/
+
+/*@media (max-width: 768px){*/
+    /*#account-history{*/
+        /*margin-left: 0;*/
+    /*}*/
+/*}*/
+
+#account-history-header{
+    padding-top: 15px;
+    font-size: 20px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+#total-spent{
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+#account-history hr{
+    margin: 5px 0;
+}
+
+/*#profile-tablist .tr-active{*/
+    /*color: red;*/
+    /*font-size: 17px;*/
+    /*border-bottom: red 3px solid;*/
+/*}*/
+
+.tr-course-list-img img{
+    width: 100%;
+    height: 85px;
+    margin-bottom: 20px;
+}
+
+.tr-course-list-img{
+    padding: 2px;
+    text-align: center;
+}
+
+.tr-course-list-info{
+    padding-top: 15px;
+}
+
+.tr-course-list-date{
+    padding-top: 15px;
+    text-align: center;
+}
+
+#interested .tr-course-list-date{
+    padding-top: 40px;
+}
+
+.tr-course-list-date h5{
+    color: gray;
+    font-size: 18px;
+}
+
+.tr-course-list-date a{
+    min-width: 100px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: indianred;
+    color: white;
+    font-size: 18px;
+}
+
+#profile-tablist .badge{
+    margin-left: 10px;
+    transition: .3s ease;
+}
+
+#profile-tablist a:hover .badge{
+    font-size: 16px;
+    background-color: red;
+}
+
+.tr-validation-options{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.tr-validation-options a{
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 5px 0;
+    border-radius: 30px;
+}
+
+.tr-validation-true{
+    background-color: green;
+}
+
+.tr-validation-false{
+    background-color: red;
+}
+
+.tr-user-profile{
+    position: relative;
+    background-color: white;
+    padding: 0;
+    margin-bottom: 15px;
+    height: 255px;
+}
+
+.tr-user-profile-info{
+    padding: 0 15px;
+    padding-top: 140px;
+    text-align: center;
+}
+
+.tr-user-profile-info .tr-role-admin{
+    margin-top: 10px;
+}
+
+a[class~="tr-grant-option"]{
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+

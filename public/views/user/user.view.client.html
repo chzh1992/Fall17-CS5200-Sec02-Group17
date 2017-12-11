@@ -1,5 +1,201 @@
-<nav>
+<ng-include src="'views/common/nav-header.html'"></ng-include>
 
-</nav>
+<section id="profile-main-section"
+         tr-profile-tab>
 
-User
+
+    <div id="profile-pic">
+        <img ng-src="{{model.user.profilePic}}" class="tr-horizontal-center">
+    </div>
+
+    <div id="profile-tablist-bar"
+         class="row tr-large-device-content">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-9" >
+
+            <div id="profile-tablist">
+                <a href=""
+                   data-target="#enrolled"
+                   class="tr-tab tr-active">
+                    Enrolled
+                </a>
+                <a href=""
+                   data-target="#completed"
+                   class="tr-tab">
+                    Completed
+                </a>
+                <a href=""
+                   data-target="#interested"
+                   class="tr-tab">
+                    Insterested
+                </a>
+                <a href=""
+                   data-target="#created"
+                   class="tr-tab"
+                   ng-show="model.user.isFaculty">
+                    Created
+                </a>
+                <a href=""
+                   data-target="#pending"
+                   class="tr-tab"
+                   ng-show="model.user.isAdmin">
+                    Validation Requests
+                    <span class="badge">{{model.validationRequests.length}}</span>
+                </a>
+                <a href=""
+                   data-target="#all-users"
+                   class="tr-tab"
+                   ng-show="model.user.isAdmin"
+                   ng-click="model.getAllUsers()">
+                    All Users
+                </a>
+                <a href=""
+                   class="tr-tab"
+                   data-target="#account-history">
+                    Account History
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3" id="user-information">
+            <div id="info-name">
+                <b>
+                    {{model.user.name}}
+                </b>
+            </div>
+            <div id="info-email">
+                {{model.user.email}}
+            </div>
+            <div ng-show="model.user.isFaculty">
+                <div>
+                    <a id="role-faculty">
+                        Faculty
+                    </a>
+                </div>
+                <div id="info-faculty">
+                    {{model.user.title}} <br ng-show="model.user.title">
+                    {{model.user.affiliation}} <br ng-show="model.user.affiliation">
+                    {{model.user.workWebsite}} <br ng-show="model.user.workWebsite">
+                    <div ng-show="model.user.validator">
+                        Validated by {{model.user.validator}} <br>
+                        on {{model.user.validatedOn}}<br>
+                    </div>
+
+                </div>
+            </div>
+
+            <div ng-show="model.user.isAdmin">
+                <a class="tr-role-admin">
+                    Admin
+                </a>
+                <div ng-show="model.user.grantor" id="info-admin">
+                    Granted by {{model.user.grantor}} <br>
+                    on {{model.user.grantedOn}} <br>
+                </div>
+            </div>
+
+            <div id="info-address">
+                {{model.user.street}}<br>
+                {{model.user.city}}, {{model.user.postalCode}} <br>
+                {{model.user.country}}
+            </div>
+
+            <!--<div id="info-phone">-->
+                <!--{{model.user.}}-->
+            <!--</div>-->
+
+        </div>
+        <div class="col-sm-8">
+            <div id="profile-tabpane">
+
+                <ng-include src="'views/user/operation-message.html'"></ng-include>
+
+                <ul class="list-group tr-tab-content tr-active"
+                    id="enrolled"
+                    data-tab-type="list">
+                    <li class="list-group-item" ng-repeat="course in model.courses.enrolled">
+                        <ng-include src="'views/user/list-item/course-list-item.html'"></ng-include>
+                    </li>
+                </ul>
+
+                <ul class="list-group tr-tab-content"
+                    id="completed"
+                    data-tab-type="list">
+                    <li class="list-group-item" ng-repeat="course in model.courses.completed">
+                        <ng-include src="'views/user/list-item/course-list-item.html'"></ng-include>
+                    </li>
+                </ul>
+
+                <ul class="list-group tr-tab-content"
+                    id="interested"
+                    data-tab-type="list">
+                    <li class="list-group-item" ng-repeat="course in model.courses.interested">
+                        <ng-include src="'views/user/list-item/course-list-item.html'"></ng-include>
+                    </li>
+                </ul>
+
+                <ul class="list-group tr-tab-content"
+                    id="created"
+                    data-tab-type="list">
+                    <li class="list-group-item" ng-repeat="course in model.courses.created">
+                        <ng-include src="'views/user/list-item/course-list-item.html'"></ng-include>
+                    </li>
+                </ul>
+
+                <ul class="list-group tr-tab-content"
+                    id="pending"
+                    data-tab-type="list">
+                    <li ng-repeat="request in model.validationRequests" class="list-group-item">
+                        <ng-include src="'views/user/list-item/request-list-item.html'"></ng-include>
+                    </li>
+                </ul>
+
+                <div class="tr-tab-content row"
+                     id="all-users"
+                     data-tab-type="normal">
+
+                    <div class="col-sm-4" ng-repeat="user in model.allUsers">
+                        <ng-include src="'views/user/list-item/user-management-list-item.html'"></ng-include>
+                    </div>
+
+                </div>
+
+                <div class="tr-tab-content"
+                     id="account-history"
+                     data-tab-type="list">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    Course Name
+                                </div>
+                                <div class="col-xs-2">
+                                    Enrollment Date
+                                </div>
+                                <div class="col-xs-2">
+                                    Completion Date
+                                </div>
+                                <div class="col-xs-4">
+                                    Amount Paid (Confirmation Code)
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" ng-repeat="item in model.history">
+                            <ng-include src="'views/user/list-item/history-list-item.html'"></ng-include>
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <h3 class="pull-right">Total: {{model.total}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

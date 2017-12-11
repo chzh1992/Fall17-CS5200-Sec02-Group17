@@ -1,0 +1,31 @@
+<nav class="tr-nav-header" id="statistics-header">
+    <span class="tr-vertical-center tr-nav-brand">
+        <a href="#!/"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+    </span>
+</nav>
+
+<section id="statistics-main-section">
+    <ol class="tr-report-list">
+        <li>How active each professor is in the course (based on how many questions each professor has answered)</li>
+        <label for="report1">CourseId</label>
+        <div class="input-group" style="width: 300px">
+            <input type="text"
+                   ng-model="model.activity_course"
+                   class="form-control"
+                   id="report1"
+                   aria-describedby="addon1">
+            <span class="input-group-addon" id="addon1">
+                <span class="glyphicon glyphicon-search" ng-click="model.getActivityReport(model.activity_course)"></span>
+            </span>
+        </div>
+        <div tr-activity-report>
+            <canvas id="activity-canvas">
+            </canvas>
+        </div>
+
+        <li>A review on a professor's courses</li>
+        <li>How much the students spend on video courses</li>
+        <li>Course Topics and their popularity</li>
+        <li>The most popular professor</li>
+    </ol>
+</section>

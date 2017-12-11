@@ -6,35 +6,58 @@
         </span>
     <ul id="home-navbar" class="tr-large-device-content tr-navbar tr-vertical-center">
         <li>
-            <a href="">
+            <a href="#!/statistics">
                 Statistics
+                <div class="tr-navbar-item-underline">
+                </div>
             </a>
-            <div class="tr-navbar-item-underline">
-            </div>
         </li>
-        <li>
-            <a href="">
+        <li ng-show="!model.user">
+            <a href="#!/login">
                 Log In
+                <div class="tr-navbar-item-underline">
+                </div>
             </a>
-            <div class="tr-navbar-item-underline">
-            </div>
+        </li>
+        <li ng-show="model.user">
+            <a href="#!/user">
+                My Profile
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
+        </li>
+        <li ng-show="model.user">
+            <a href="" ng-click="model.logout()">
+                Log Out
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
         </li>
     </ul>
     <span tr-small-device-navbar>
              <a href="" class="glyphicon glyphicon-menu-hamburger tr-navbar-opener tr-vertical-center"></a>
              <a href="" class="glyphicon glyphicon-remove tr-navbar-closer tr-vertical-center"></a>
-             <ul class="list-group tr-hidden-navbar-menu">
-                 <a href="">
-                     <li class="list-group-item">
+             <ul class="list-group tr-collapsed-navbar-menu">
+                 <li class="list-group-item">
+                     <a href="#!/statistics">
                          Statistics
-                     </li>
-                 </a>
-
-                 <a href="">
-                     <li class="list-group-item">
-                        Log In
-                     </li>
-                 </a>
+                     </a>
+                 </li>
+                 <li class="list-group-item" ng-show="!model.user">
+                     <a href="#!/login">
+                         Log In
+                     </a>
+                 </li>
+                 <li class="list-group-item" ng-show="model.user">
+                     <a href="#!/user">
+                         My Profile
+                     </a>
+                 </li>
+                 <li class="list-group-item" ng-show="model.user">
+                     <a href="" ng-click="model.logout()">
+                         Log Out
+                     </a>
+                 </li>
              </ul>
          </span>
 </header>
@@ -60,15 +83,15 @@
     </div>
     <div id="home-button-group">
         <div class="tr-large-device-content">
-            <a href="">Sign Up</a>
-            <a href="">Find a Course</a>
+            <a href="#!/register">Sign Up</a>
+            <a href="#!/search">Find a Course</a>
         </div>
         <div class="tr-small-device-content">
             <div>
-                <a href="">Sign Up</a>
+                <a href="#!/register">Sign Up</a>
             </div>
             <div>
-                <a href="">Find a Course</a>
+                <a href="#!/search">Find a Course</a>
             </div>
         </div>
     </div>

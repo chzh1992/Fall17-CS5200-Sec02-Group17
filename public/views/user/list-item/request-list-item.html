@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-xs-9">
+        <h4>{{request.fromName}} </h4>
+        <h5><b>{{request.fromEmail}}</b></h5>
+        {{request.title}} <br>
+        {{request.affiliation}} <br>
+        {{request.workWebsite}} <br>
+    </div>
+    <div class="col-xs-3 tr-validation-options">
+        <div ng-show="request.passed === undefined">
+            <a class="tr-validation-true"
+               ng-click="model.assessFaculty(request.fromId,true)">
+                Validate
+            </a>
+            <a class="tr-validation-false"
+               ng-click="model.assessFaculty(request.fromId,false)">
+                Disapprove
+            </a>
+        </div>
+        <div ng-show="request.passed">
+            Validated!
+        </div>
+        <div ng-show="request.passed == false">
+            Disapproved!
+        </div>
+    </div>
+</div>

@@ -1,1 +1,190 @@
-Course
+<ng-include src="'views/common/nav-header.html'"></ng-include>
+
+<section id="course-main-section">
+    <div id="course-header" style="background-image: url({{model.course.icon}})">
+        <span id="course-name" class="tr-center">
+            {{model.course.name}}
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" id="course-details">
+            <div id="course-desc">
+                <b>About this course:</b>
+                <p>
+                    {{model.course.description}}
+                </p>
+            </div>
+            <div id="course-creator">
+                <h4>Creators:</h4>
+                <span ng-repeat="creator in model.creators">
+                    {{creator.title}} {{creator.name}}
+                </span>
+            </div>
+            <div>
+                <b>Primary Topic:</b>
+                {{model.course.primaryTopic}}
+            </div>
+            <div ng-show="model.course.secondaryTopic">
+                <b>Secondary Topics:</b>
+                {{model.course.secondaryTopic}}
+            </div>
+
+            <div>
+                <b>Rating:</b>
+                <ng-rate-it ng-model="model.course.rating" read-only="true"></ng-rate-it>
+            </div>
+            <div id="course-info">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="tr-course-info-box">
+                            <div class="tr-course-info-box-content">
+                                <div>Materials</div>
+                                <div><b>{{model.courseMaterials.length}}</b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="tr-course-info-box">
+                            <div class="tr-course-info-box-content">
+                                <div>Tuition</div>
+                                <div><b>{{model.course.cost}}</b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="tr-course-info-box">
+                            <div class="tr-course-info-box-content">
+                                <div>Creation Date</div>
+                                <div><b>{{model.course.date}}</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 ng-if="!model.user"><a href="#!/login">Log in</a> to enroll in this course</h2>
+            <h2 ng-if="model.userStatus.isCreator">You're one of the faculty.</h2>
+            <h2 ng-if="model.user && !model.userStatus.isEnrolled"><a ng-click="model.enroll(model.user.id)">Enroll in this course</a></h2>
+            <h2 ng-if="model.userStatus.isEnrolled">
+                <span ng-if="lastCompleted < model.courseMaterials.length">
+                    You've enrolled in this course.
+                </span>
+                <span ng-if="lastCompleted == model.courseMaterials.length">
+                    You've completed this course.
+                </span>
+            </h2>
+
+            <div ng-show="model.userStatus.isCreator || model.userStatus.isEnrolled">
+                <div id="course-material-list">
+                    <ul class="list-group">
+                        <li class="list-group-item"
+                            tr-course-material
+                            ng-repeat="material in model.courseMaterials">
+
+                            <div class="tr-course-material" >
+                                <div ng-switch="material.type">
+                                    <div ng-switch-when="DownloadableFile">
+                                        <ng-include src="'views/course/material/downloadable-file.html'"></ng-include>
+                                    </div>
+                                    <div ng-switch-when="Link">
+                                        <div ng-if="!material.isVideo">
+                                            <ng-include src="'views/course/material/link.html'"></ng-include>
+                                        </div>
+                                        <div ng-if="material.isVideo">
+                                            <ng-include src="'views/course/material/video.html'"></ng-include>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="Post">
+                                        <ng-include src="'views/course/material/post.html'"></ng-include>
+                                    </div>
+                                </div>
+
+                                <span class="pull-right tr-post-complete">
+                                    <a ng-click="model.completeMaterial(material)" href="">Finish</a>
+                                </span>
+                            </div>
+
+                            <div class="tr-course-material-ordinal">
+                                <span class="tr-center">{{material.name}}</span>
+                            </div>
+
+                            <div class="tr-course-material-shade"></div>
+                        </li>
+
+                        <!--<li class="list-group-item tr-course-material-disabled">-->
+                        <!--<div class="tr-course-material ">-->
+
+                        <!--</div>-->
+                        <!--</li>-->
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 style="text-align: center"><i>The Question Board</i></h2>
+                    <div class="tr-question-board">
+                        <div ng-repeat="question in model.courseQuestions" class="tr-course-question">
+                            <div class="row">
+                                <div class="col-sm-4 hidden-xs tr-question-label">
+                                    <b>
+                                        Asked By: <br>
+                                        {{question.questioner}} <br>
+                                    </b>
+                                    {{question.likes}} likes <br>
+                                    <!--<span class="glyphicon glyphicon-thumbs-up"></span> Like <br>-->
+
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    {{question.questionText}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 hidden-xs tr-question-label">
+                                    <b>
+                                        Related Material
+                                    </b>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <span class="badge" ng-repeat="relMat in question.relatedMaterials">
+                                        {{relMat}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="question.answer">
+                                <div class="col-sm-4 hidden-xs tr-question-label">
+                                    <b>
+                                        Answered By: <br>
+                                        {{question.answerer}} <br>
+                                    </b>
+                                </div>
+                                <div class="col-sm-8 col-xs-12">
+                                    <p>
+                                        {{question.answer}}
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+</section>
+
+<div tr-course-completion-message>
+    <div class="tr-center tr-full-screen-message-content">
+        <h1>Congratulations!</h1>
+        <h3>You've completed the course. Now would you like to comment on this course?</h3>
+        <ng-rate-it ng-model="model.comment.rating" step="1"></ng-rate-it> <br>
+        <textarea class="form-control" rows="10" ng-model="model.comment.text"></textarea>
+        <a class="tr-comment-button" href="" >comment</a>
+        <a href=""><span class="glyphicon glyphicon-remove tr-completion-message-closer"></span></a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<nav class="tr-fixed-top tr-nav-header">
+    <span class="tr-vertical-center tr-nav-brand">
+        <a href="#!/">Trainly</a>
+    </span>
+    <ul class="tr-navbar tr-vertical-center tr-large-device-content" tr-underlined-navbar>
+        <li ng-show="!model.user">
+            <a href="#!/login">
+                Log In
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
+        </li>
+        <li ng-show="model.user && model.course">
+            <a href="#!/user">
+                My Profile
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
+        </li>
+        <li ng-show="model.user">
+            <a href="" ng-click="model.logout()">
+                Log Out
+                <div class="tr-navbar-item-underline">
+                </div>
+            </a>
+        </li>
+    </ul>
+    <span tr-small-device-navbar>
+             <a href="" class="glyphicon glyphicon-menu-hamburger tr-navbar-opener tr-vertical-center"></a>
+             <a href="" class="glyphicon glyphicon-remove tr-navbar-closer tr-vertical-center"></a>
+             <ul class="list-group tr-collapsed-navbar-menu">
+                 <li class="list-group-item">
+                     <a href="">
+                         My Profile
+                     </a>
+                 </li>
+                 <li class="list-group-item">
+                     <a href="">
+                         Log Out
+                     </a>
+                 </li>
+             </ul>
+    </span>
+</nav>

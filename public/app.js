@@ -1,4 +1,6 @@
 (function(){
     angular
-        .module('TrainlyIo',['ngRoute'])
+        .module('TrainlyIo',[
+            'ngRoute',
+            'ngRateIt']);
 })();
