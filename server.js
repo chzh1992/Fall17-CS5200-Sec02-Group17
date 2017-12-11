@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 require('./passport-config');
-=======
-if (process.env.PORT === undefined){
-   // require('./env');
-}
-
->>>>>>> jm
 const connectionPool = require('./mysql2-config');
 
 const app = require('./express-config');
