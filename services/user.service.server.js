@@ -604,8 +604,8 @@ function register(req,res){
 
 function insertIntoUserTable(conn,user,facultyFlag){
     return conn
-        .execute('insert into `User` (FirstName,LastName,Email,HashAndSalt,Street,City,Country,PostalCode,FacultyFlag) values (?,?,?,?,?,?,?,?,?)',
-            [user.firstName,user.lastName,user.username,user.password,
+        .execute('insert into `User` (FirstName,LastName,Email,HashAndSalt,ProfilePic,Street,City,Country,PostalCode,FacultyFlag) values (?,?,?,?,?,?,?,?,?,?)',
+            [user.firstName,user.lastName,user.username,user.password,user.profilePic,
                 user.street === undefined ? null : user.street,
                 user.city === undefined ? null : user.city,
                 user.country === undefined ? null : user.country,

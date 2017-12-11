@@ -13,10 +13,13 @@
             vm.user = {
                 isFaculty: false
             };
+            $scope.vm = {};
         }
         init();
 
         function register(user){
+
+            user.profilePic = $scope.vm.uploadme === undefined ? null : $scope.vm.uploadme;
 
             // console.log(user);
             // if (!user) {
