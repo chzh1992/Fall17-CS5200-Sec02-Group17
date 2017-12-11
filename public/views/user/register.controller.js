@@ -3,19 +3,21 @@
         angular.module("TrainlyIo")
         .controller("RegisterController",RegisterController);
 
-    function RegisterController(UserService,$location,$scope, $window) {
+    function RegisterController(UserService,$location,$scope) {
 
         var vm=this;
         vm.register=register;
         vm.message=null;
+
 
         function init(){
 
         }
         init();
 
-        function register(user){
 
+        function register(user){
+            user.profilePicture = $scope.vm.uploadme;
             if (!user) {
                 vm.message = "Please fill in the required details";
                 return;
@@ -63,6 +65,8 @@
                 vm.message = "Please enter a password";
                 return;
             }
+
+            debugger;
 
             UserService.register(user)
                 .then(function (user) {

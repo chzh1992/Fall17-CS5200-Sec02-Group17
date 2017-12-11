@@ -73,7 +73,7 @@ const bcrypt = require('bcrypt');
                                 else
                                 {
                                      var insertQuery = "INSERT INTO user (FirstName, LastName, Email, Password, Street, " +
-                                        "City, Country, PostalCode, ProfilePic,FacultyFlag, AdminFlag) VALUES " +
+                                        "City, Country, PostalCode, ProfilePic, FacultyFlag, AdminFlag) VALUES " +
                                         "(?,?,?,?,?,?,?,?,?,?,?)";
 
                                     conn.query(insertQuery,[firstName,lastName,email,encryptedPassword,street,city,country,
