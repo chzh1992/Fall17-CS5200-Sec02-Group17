@@ -2,14 +2,17 @@ const app = require('../express-config');
 const passport = require('passport');
 const connectionPool = require('../mysql2-config');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 app.post('/api/user/login', passport.authenticate('local'), login);
 app.post('/api/user/register',register);
 app.post('/api/user/logout',logout);
+
 // For test
 app.post('/testLogin',passport.authenticate('local'),function (req,res){
     res.sendStatus(200);
 });
+
 app.get('/api/user/checkLoggedIn',checkLoggedIn);
 app.get('/api/user/accountInfo',getAccountInfo);
 app.put('/api/admin/assessFaculty',assessFaculty);
@@ -540,56 +543,68 @@ function login(req, res) {
 
 function register(req,res){
     const user = req.body;
-    connectionPool
-        .getConnection()
+    bcrypt
+        .hash(user.password,saltRounds)
         .then(
-            function (conn){
-                if (user.isFaculty){
-                    return conn
-                        .query('start transaction')
-                        .then(
-                            function (){
-                                return insertIntoUserTable(conn,user,1);
+            function (hash){
+                user.password = hash;
+                connectionPool
+                    .getConnection()
+                    .then(
+                        function (conn){
+                            if (user.isFaculty){
+                                return conn
+                                    .query('start transaction')
+                                    .then(
+                                        function (){
+                                            return insertIntoUserTable(conn,user,1);
+                                        }
+                                    )
+                                    .then(
+                                        function(result){
+                                            user.userId = result[0].insertId;
+                                            return insertIntoFacultyTable(conn,user);
+                                        }
+                                    )
+                                    .then(
+                                        function (){
+                                            conn.query('commit');
+                                        }
+                                    );
+                            } else{
+                                return insertIntoUserTable(conn,user,0)
+                                    .then(
+                                        function (result){
+                                            user.userId = result[0].insertId;
+                                            return ;
+                                        }
+                                    )
                             }
-                        )
-                        .then(
-                            function(result){
-                                user.userId = result[0].insertId;
-                                return insertIntoFacultyTable(conn,user);
-                            }
-                        )
-                        .then(
-                            function (){
-                                conn.query('commit');
-                            }
-                        );
-                } else{
-                    return insertIntoUserTable(conn,user,0)
-                        .then(
-                            function (result){
-                                user.userId = result[0].insertId;
-                                return ;
-                            }
-                        )
-                }
-            }
-        )
-        .then(
-            function (){
-                req.login(user,function (err){
-                    if (err){
-                        console.log(err);
-                        return;
-                    }
-                    res.sendStatus(200);
-                });
+                        }
+                    )
+                    .then(
+                        function (){
+                            req.login(user,function (err){
+                                if (err){
+                                    console.log(err);
+                                    return;
+                                }
+                                res.sendStatus(200);
+                            });
+                        }
+                    );
+            },
+            function (err) {
+                console.log(err);
+                res.sendStatus(500);
             }
         );
+
 }
 
 function insertIntoUserTable(conn,user,facultyFlag){
     return conn
-        .execute('insert into `User` (FirstName,LastName,Email,Password,Street,City,Country,PostalCode,FacultyFlag) values (?,?,?,?,?,?,?,?,?)',
+        .execute('insert into `User` (FirstName,LastName,Email,HashAndSalt,Street,City,Country,PostalCode,FacultyFlag) values (?,?,?,?,?,?,?,?,?)',
             [user.firstName,user.lastName,user.username,user.password,
                 user.street === undefined ? null : user.street,
                 user.city === undefined ? null : user.city,

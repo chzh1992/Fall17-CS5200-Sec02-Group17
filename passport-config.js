@@ -1,6 +1,7 @@
 const passport = require('passport');
 const passportLocal = require('passport-local');
 const connectionPool = require('./mysql2-config');
+const bcrypt = require('bcrypt');
 
 function localStrategy(username,password,done){
     connectionPool
@@ -8,7 +9,7 @@ function localStrategy(username,password,done){
         .then(
             function(conn){
                 conn
-                    .execute("select UserId as userId, Password as password " +
+                    .execute("select UserId as userId, HashAndSalt as password " +
                               "from `User` " +
                               "where Email=?", [username])
                     .then(
@@ -17,11 +18,20 @@ function localStrategy(username,password,done){
                                     if (rows.length == 0){
                                         return done(null,false);
                                     }
-                                    if (rows[0].password != password){
-                                        return done(null,false);
-                                    }
-                                    return done(null,rows[0]);
-                                },
+                                    bcrypt
+                                        .compare(password,rows[0].password)
+                                        .then(
+                                            function (res){
+                                                if (res){
+                                                    return done(null,rows[0]);
+                                                } else{
+                                                    return done(null,false);
+                                                }
+                                            }
+                                            ,function(err){
+                                                return done(err);
+                                            });
+                                    },
                                 function (err){
                                     conn.release();
                                     return done(err);
@@ -74,9 +84,9 @@ passport.deserializeUser(function(id, done) {
                                affiliation: result.aff,
                                workWebsite: result.ws,
                                validator: result.vname,
-                               validatedOn: result.fts,
+                               validatedOn: timeStringToDisplay(result.fts),
                                grantor: result.gname,
-                               grantedOn: result.ats
+                               grantedOn: timeStringToDisplay(result.ats)
                            };
                            done(null,user);
                        },
@@ -87,7 +97,9 @@ passport.deserializeUser(function(id, done) {
         );
 });
 
-
+function timeStringToDisplay(jsDate){
+    return jsDate ? [jsDate.getFullYear(),jsDate.getMonth()+1,jsDate.getDate()].join('-') : null;
+}
 
 
 

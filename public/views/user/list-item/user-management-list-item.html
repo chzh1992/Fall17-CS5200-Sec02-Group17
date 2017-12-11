@@ -1,5 +1,5 @@
 <div class="tr-user-profile">
-    <img ng-src="{{user.profilePic}}" class="tr-horizontal-center">
+    <img ng-src="{{user.profilePic ? user.profilePic : '../avatar.png'}}" class="tr-horizontal-center">
     <div class="tr-user-profile-info">
         {{user.id}} <br>
         <b>{{user.name}}</b> <br>

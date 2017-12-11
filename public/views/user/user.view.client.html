@@ -77,11 +77,14 @@
                     </a>
                 </div>
                 <div id="info-faculty">
-                    {{model.user.title}} <br>
-                    {{model.user.affiliation}} <br>
-                    {{model.user.workWebsite}} <br>
-                    Validated by {{model.user.validator}} <br>
-                    on {{model.user.validatedOn}}<br>
+                    {{model.user.title}} <br ng-show="model.user.title">
+                    {{model.user.affiliation}} <br ng-show="model.user.affiliation">
+                    {{model.user.workWebsite}} <br ng-show="model.user.workWebsite">
+                    <div ng-show="model.user.validator">
+                        Validated by {{model.user.validator}} <br>
+                        on {{model.user.validatedOn}}<br>
+                    </div>
+
                 </div>
             </div>
 
@@ -90,7 +93,8 @@
                     Admin
                 </a>
                 <div ng-show="model.user.grantor" id="info-admin">
-                    Granted by {{model.user.grantor}} on {{model.user.grantedOn}}
+                    Granted by {{model.user.grantor}} <br>
+                    on {{model.user.grantedOn}} <br>
                 </div>
             </div>
 

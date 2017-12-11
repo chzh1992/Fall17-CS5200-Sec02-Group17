@@ -74,11 +74,11 @@
         }
         init();
 
-        model.test = test;
-
-        function test(){
-            $scope.courseJustCompleted = true;
-        }
+        // model.test = test;
+        //
+        // function test(){
+        //     $scope.courseJustCompleted = true;
+        // }
 
         function completeMaterial(material){
             if (material.ordinal > $scope.lastCompleted){
