@@ -38,6 +38,7 @@
 
                         if (!model.course.icon){
                             model.course.icon = "../thom-schneider-108615.jpg";
+                            /*Photo by Thom Schneider on Unsplash*/
                         }
                     }
                 )
